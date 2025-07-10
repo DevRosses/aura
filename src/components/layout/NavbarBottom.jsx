@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../hooks/useAuth";
 import { ROUTES } from "../../constants/routes";
 import "../../assets/styles/components/layout/NavbarBottom.css";
-const NavbarBottom = () => {
+function NavbarBottom() {
   const { user } = useAuth();
 
   return (

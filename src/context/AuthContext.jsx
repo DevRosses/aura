@@ -1,14 +1,17 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { getUserRole } from "../services/userService";
 import * as authService from "../services/authService";
 
 
-const AuthContext = createContext();
-
-
-export const useAuth = () => useContext(AuthContext);
+const AuthContext = createContext({
+  user: null,
+  userRole: null,
+  login: () => {},
+  register: () => {},
+  logout: () => {},
+});
 
 
 export const AuthProvider = ({ children }) => {
@@ -56,10 +59,11 @@ export const AuthProvider = ({ children }) => {
     logout,
   };
 
-
   return (
     <AuthContext.Provider value={value}>
       {!loading && children}
     </AuthContext.Provider>
   );
 };
+
+export { AuthContext };

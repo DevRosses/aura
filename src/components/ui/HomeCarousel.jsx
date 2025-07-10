@@ -3,7 +3,7 @@ function HomeCarousel() {
     <>
       <div
         id="carouselExampleCaptions"
-        class="carousel slide"
+        className="carousel slide"
         data-bs-ride="carousel"
       >
         <div className="carousel-indicators">
@@ -37,9 +37,7 @@ function HomeCarousel() {
             />
             <div className="carousel-caption d-none d-md-block">
               <h5>PROMO 1</h5>
-              <p>
-                Ejemplo 1
-              </p>
+              <p>Ejemplo 1</p>
             </div>
           </div>
           <div className="carousel-item">
@@ -50,9 +48,7 @@ function HomeCarousel() {
             />
             <div className="carousel-caption d-none d-md-block">
               <h5>PROMO 2</h5>
-              <p>
-                Ejemplo 2
-              </p>
+              <p>Ejemplo 2</p>
             </div>
           </div>
           <div className="carousel-item">
@@ -63,33 +59,35 @@ function HomeCarousel() {
             />
             <div className="carousel-caption d-none d-md-block">
               <h5>PROMO 3</h5>
-              <p>
-                Ejemplo 3
-              </p>
+              <p>Ejemplo 3</p>
             </div>
           </div>
         </div>
         <button
-          class="carousel-control-prev"
+          className="carousel-control-prev"
           type="button"
           data-bs-target="#carouselExampleCaptions"
           data-bs-slide="prev"
         >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
+          <span className="visually-hidden">Previous</span>
         </button>
         <button
-          class="carousel-control-next"
+          className="carousel-control-next"
           type="button"
           data-bs-target="#carouselExampleCaptions"
           data-bs-slide="next"
         >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
+          <span className="visually-hidden">Next</span>
         </button>
       </div>
-
-
     </>
   );
 }

@@ -9,7 +9,6 @@ export const getUserRole = async (uid) => {
   if (docSnap.exists()) {
     return docSnap.data().role; 
   } else {
-    
-    throw new Error("No se encontró el expediente del usuario.");
+    return "user"; // Si no hay rol definido, asumimos que es un usuario normal
   }
 };

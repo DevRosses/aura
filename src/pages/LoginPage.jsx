@@ -1,15 +1,39 @@
 import { ROUTES } from "../constants/routes";
 import { Link } from "react-router-dom";
+import { dispararSweetBasico } from "../utils/SweetAlert";
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+
 function LoginPage() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    login(email, password)
+      .then(() => {
+        
+          navigate(ROUTES.DASHBOARD);
+        dispararSweetBasico("success", "Inicio de sesión exitoso");
+      })
+      .catch((error) => {
+        dispararSweetBasico("error", error.message);
+      });
+  };
+
   return (
     <>
-      <form>
-        <div class="mb-2">
-          <label for="exampleInputEmail1" class="form-label">
+      <form onSubmit={handleSubmit} className="container mt-5">
+        <div className="mb-2">
+          <label htmlFor="exampleInputEmail1" className="form-label">
             Email
           </label>
           <input
             type="email"
+            name="email"
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
@@ -18,12 +42,13 @@ function LoginPage() {
             Nunca compartiremos su correo electrónico con nadie más.
           </div>
         </div>
-        <div class="mb-2">
-          <label for="exampleInputPassword1" class="form-label">
+        <div className="mb-2">
+          <label htmlFor="exampleInputPassword1" className="form-label">
             Contraseña
           </label>
           <input
             type="password"
+            name="password"
             className="form-control"
             id="exampleInputPassword1"
           />
@@ -34,6 +59,15 @@ function LoginPage() {
       </form>
       <p className="mt-3">
         ¿No tienes una cuenta? <Link to={ROUTES.REGISTER}>Regístrate</Link>
+      </p>
+      <p>
+        ¿Olvidaste tu contraseña?{" "}
+        <button
+          className="text-primary"
+          onClick={() => dispararSweetBasico("Funcionalidad en desarrollo")}
+        >
+          Recuperar contraseña
+        </button>
       </p>
     </>
   );

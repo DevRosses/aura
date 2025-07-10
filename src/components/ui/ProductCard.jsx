@@ -4,7 +4,7 @@ const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
 
   return (
-    <div class="col">
+    <div className="col">
       <div className="card text-center">
         <img
           src={product.imagen}

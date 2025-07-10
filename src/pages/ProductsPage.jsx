@@ -26,8 +26,11 @@ const Products = () => {
 
   return (
     <div>
-      <h1 className="mb-4">Nuestros Productos</h1>
-      <div class="row row-cols-2 row-cols-md-4 g-8">
+      <h2 className="mb-4">
+        Cada producto tiene una intención: hidratar, proteger, sanar.
+      </h2>
+      <p>Cosmética botánica. Sin químicos, sin crueldad. Con ciencia y alma.</p>
+      <div className="row row-cols-2 row-cols-md-3 g-6">
         {products?.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

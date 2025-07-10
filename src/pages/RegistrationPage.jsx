@@ -1,4 +1,5 @@
 function RegistrationPage() {
+
   return (
     <form>
       <h1>Registrate</h1>
@@ -7,7 +8,8 @@ function RegistrationPage() {
           Email
         </label>
         <input
-                type="email"
+          type="email"
+          name="email"
                 className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
@@ -16,12 +18,13 @@ function RegistrationPage() {
                 Nunca compartiremos su correo electrónico con nadie más.
               </div>
             </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">
+            <div className="mb-3">
+              <label htmlFor="exampleInputPassword1" className="form-label">
                 Contraseña
               </label>
               <input
-                type="password"
+          type="password"
+          name="password"
                 className="form-control"
                 id="exampleInputPassword1"
               />

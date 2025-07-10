@@ -1,8 +1,8 @@
 function PaymentPage() {
   return (
     <div>
-      <h1>Payment Page</h1>
-      <p>Please enter your payment details.</p>
+      <h1>Pagina de pago</h1>
+      <p>Por favor, ingresa los detalles de tu pago.</p>
     </div>
   );
 }

@@ -2,29 +2,55 @@ import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { ROUTES } from "../../constants/routes";
 
-const NavbarTop = () => {
+import { useNavigate } from "react-router-dom";
+import { Icon } from "@iconify/react";
+
+import { useAuth } from "../../hooks/useAuth";
+
+function NavbarTop() {
   const { cartCount } = useCart();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate(ROUTES.HOME);
+  };
 
   return (
     <header className="py-2 px-3 bg-light border-bottom sticky-top">
       <div className="d-flex justify-content-between align-items-center">
         {/* Logo */}
         <Link to={ROUTES.HOME} className="text-dark text-decoration-none">
-          <h3>AURA
-          </h3>
+          <h3>AURA</h3>
         </Link>
-
         {/* Vínculos */}
         <div className="d-flex align-items-center">
-          <Link
-            to={ROUTES.LOGIN}
-            className="btn btn-sm btn-outline-secondary me-2"
-          >
-            Login
-          </Link>
+          {user ? (
+            <div className="d-flex align-items-center">
+              <Icon icon="mdi:account" className="me-2" />
+              <span className="me-2">
+                Hola, <span className="fw-bold">{user.email}</span>
+              </span>
+              <button
+                className="btn btn-link text-decoration-none"
+                onClick={handleLogout}
+                title="Cerrar sesión"
+              >
+                <Icon icon="mdi:logout" />
+              </button>
+            </div>
+          ) : (
+            <Link
+              to={ROUTES.LOGIN}
+              className="btn btn-sm btn-outline-secondary me-2"
+            >
+              <Icon icon="mdi:account-lock-outline" />
+            </Link>
+          )}
 
-          <Link to={ROUTES.CART} className="position-relative">
-            <i className="bi bi-cart-fill fs-4"></i>
+          <Link to={ROUTES.CART} className="position-relative ms-3">
+            <Icon icon="icon-park-outline:shopping-bag" />
             {cartCount > 0 && (
               <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 {cartCount}

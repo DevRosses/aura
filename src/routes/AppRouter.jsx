@@ -10,7 +10,9 @@ import Register from "../pages/RegistrationPage";
 import Cart from "../pages/CartPage";
 import Payment from "../pages/PaymentPage";
 import ProductDetails from "../pages/ProductDetailPage";
-import Dashboard from "../pages/DashboardUserPage";
+import Dashboard from "../pages/Dashboard";
+import AdminDashboard from "../pages/DashboardAdminPage";
+import UserDashboard from "../pages/DashboardUserPage";
 import ContactUs from "../pages/ContactUsPage";
 import AboutUs from "../pages/AboutUsPage";
 import Rituals from "../pages/RitualsPage";
@@ -35,6 +37,24 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+      <Route
+        path={ROUTES.ADMIN_DASHBOARD}
+        element={
+          <ProtectedRoute allowedRole="admin">
+            <AdminDashboard />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path={ROUTES.USER_DASHBOARD}
+        element={
+          <ProtectedRoute allowedRole="user">
+            <UserDashboard />
+          </ProtectedRoute>
+        }
+      />
+
       <Route
         path={ROUTES.PAYMENT}
         element={
