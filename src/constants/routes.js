@@ -1,0 +1,27 @@
+export const ROUTES = {
+  HOME: "/",
+  PRODUCTS: "/products",
+  LOGIN: "/login",
+  REGISTER: "/register",
+  CART: "/cart",
+  PAYMENT: "/payment",
+  PRODUCT_DETAILS: "/products/:id",
+  PROFILE: "/profile",
+  DASHBOARD: "/dashboard",
+  ADMIN_DASHBOARD: "/admin/dashboard",
+  ADMIN_PRODUCTS: "/admin/products",
+  ADMIN_ORDERS: "/admin/orders",
+  ADMIN_USERS: "/admin/users",
+  ADMIN_SETTINGS: "/admin/settings",
+  CONTACT_US: "/contact-us",
+  ABOUT_US: "/about-us",
+  RITUALS: "/rituals",
+  /*
+  NOT_FOUND: "*",
+  FORBIDDEN: "/403",
+  SERVER_ERROR: "/500",
+  PRIVACY_POLICY: "/privacy-policy",
+  TERMS_OF_SERVICE: "/terms-of-service",
+  FAQ: "/faq",
+  */
+};
