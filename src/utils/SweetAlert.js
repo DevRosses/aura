@@ -9,10 +9,10 @@ const swalBaseConfig = {
     title: "swal2-title",
     content: "swal2-content",
   },
-  background: "var(--color-bg)",
-  color: "var(--color-text)",
-  confirmButtonColor: "var(--color-primary)",
-  cancelButtonColor: "#aaa",
+  background: "var(--color-secundario)",
+  color: "var(--color-primario)",
+  confirmButtonColor: "var(--color-acento)",
+  cancelButtonColor: "var(--color-acento)",
   buttonsStyling: false,
   showClass: {
     popup: "fade-in",
@@ -32,6 +32,18 @@ export function dispararSweetBasico(icon, title, text, confirmButtonText) {
   });
 }
 
+
+export function dispararSweetDecision( icon, title, text, confirmButtonText, cancelButtonText) {
+  return Swal.fire({
+    ...swalBaseConfig,
+    icon,
+    title,
+    text,
+    showCancelButton: true,
+    confirmButtonText,
+    cancelButtonText
+  });
+}
 export function dispararSweetConfirmacion() {
   return Swal.fire({
     ...swalBaseConfig,

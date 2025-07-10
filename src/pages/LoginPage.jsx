@@ -17,10 +17,10 @@ function LoginPage() {
       .then(() => {
         
           navigate(ROUTES.DASHBOARD);
-        dispararSweetBasico("success", "Inicio de sesión exitoso");
+        dispararSweetBasico("success", "Inicio de sesión exitoso","Bienvenido de nuevo", "Continuar");
       })
       .catch((error) => {
-        dispararSweetBasico("error", error.message);
+        dispararSweetBasico("error", "Error al iniciar sesión", error.message, "Inténtalo de nuevo");
       });
   };
 

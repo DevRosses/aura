@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { ROUTES } from "../../constants/routes";
-
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
-
 import { useAuth } from "../../hooks/useAuth";
+import { dispararSweetDecision } from "../../utils/SweetAlert";
 
 function NavbarTop() {
   const { cartCount } = useCart();
@@ -13,8 +12,18 @@ function NavbarTop() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout();
-    navigate(ROUTES.HOME);
+    dispararSweetDecision(
+      "warning",
+      "¿Estás seguro de que deseas cerrar sesión?",
+      "Esta acción no se puede deshacer.",
+      "Sí, cerrar sesión",
+      "Cancelar"
+    ).then((result) => {
+      if (result.isConfirmed) {
+        logout();
+        navigate(ROUTES.HOME);
+      }
+    });
   };
 
   return (
@@ -61,6 +70,6 @@ function NavbarTop() {
       </div>
     </header>
   );
-};
+}
 
 export default NavbarTop;
