@@ -1,5 +1,5 @@
 import CartCard from "../components/ui/CartCard";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../hooks/useCart.js";
 
 function CartPage() {
   const { cartItems } = useCart();

@@ -7,8 +7,7 @@ const Layout = ({ children }) => {
     <div className="d-flex flex-column min-vh-100">
       <NavbarTop />
       <main
-        className="container py-4"
-        style={{ paddingBottom: "80px", flex: 1 }}
+        className="container d-flex flex-column flex-grow-1"
       >
         {children}
       </main>

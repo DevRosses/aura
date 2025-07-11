@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../hooks/useCart";
 import { ROUTES } from "../../constants/routes";
 import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
@@ -27,7 +27,7 @@ function NavbarTop() {
   };
 
   return (
-    <header className="py-2 px-3 bg-light border-bottom sticky-top">
+    <header className="py-2 px-4 bg-light border-bottom sticky-top">
       <div className="d-flex justify-content-between align-items-center">
         {/* Logo */}
         <Link to={ROUTES.HOME} className="text-dark text-decoration-none">
