@@ -1,10 +1,7 @@
+import AdminLayout from "../components/admin/AdminLayout";
+
 function DashboardAdminPage() {
-  return (
-    <div>
-      <h1>🔑 Despacho del Gerente (Admin)</h1>
-      <p>Welcome to the Admin Dashboard!</p>
-    </div>
-  );
+  return <AdminLayout />;
 }
 
 export default DashboardAdminPage;

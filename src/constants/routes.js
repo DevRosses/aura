@@ -12,7 +12,8 @@ export const ROUTES = {
 
   ADMIN_PRODUCTS: "/aura/admin/products",
   ADMIN_USERS: "/aura/admin/users",
-  ADMIN_SETTINGS: "/aura/admin/settings",
+  ADMIN_PERMISSIONS: "/aura/admin/permissions",
+
   CONTACT_US: "/aura/contact-us",
   ABOUT_US: "/aura/about-us",
   RITUALS: "/aura/rituals",

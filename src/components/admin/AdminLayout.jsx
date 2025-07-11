@@ -5,13 +5,14 @@ const AdminLayout = () => {
   return (
     <div className="container-fluid">
       <div className="row">
-        
-        <div className="col-md-3 col-lg-2 bg-dark text-white min-vh-100 p-0">
-          <SidebarAdmin />
-        </div>
+  
+          <div className="offcanvas-body p-0">
+            <SidebarAdmin />
+          </div>
+
 
         
-        <div className="col-md-9 col-lg-10 p-4">
+        <div className="col-md-9 col-lg-10 p-4 offset-md-3 offset-lg-2">
           <Outlet />
         </div>
       </div>

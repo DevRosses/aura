@@ -73,7 +73,7 @@ const AppRoutes = () => {
       </Route>
 
       <Route
-        path={ROUTES.ADMIN_SETTINGS}
+        path={ROUTES.ADMIN_PERMISSIONS}
         element={
           <ProtectedRoute allowedRole="admin">
             <AdminLayout />

@@ -3,10 +3,10 @@ import PromoBanner from "../components/ui/PromoBanner";
 
 function HomePage() {
       return (
-        <div>
+        <>
           <HomeCarousel/>
           <PromoBanner/>
-        </div>
+        </>
       );
     }
     
