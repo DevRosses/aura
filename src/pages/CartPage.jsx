@@ -11,12 +11,9 @@ function CartPage() {
 
       {cartItems.length > 0 ? (
         cartItems.map((item) => <CartCard cartItems={item} key={item.id} />)
-
-        
       ) : (
         <h2>Carrito vacío</h2>
       )}
-
     </div>
   );
 }
