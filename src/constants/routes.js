@@ -6,13 +6,11 @@ export const ROUTES = {
   CART: "/aura/cart",
   PAYMENT: "/aura/payment",
   PRODUCT_DETAILS: "/aura/products/:id",
-  PROFILE: "/aura/profile",
   DASHBOARD: "/aura/rol",
   USER_DASHBOARD: "/aura/rol/user-dashboard",
   ADMIN_DASHBOARD: "/aura/rol/admin-dashboard",
 
   ADMIN_PRODUCTS: "/aura/admin/products",
-  ADMIN_ORDERS: "/aura/admin/orders",
   ADMIN_USERS: "/aura/admin/users",
   ADMIN_SETTINGS: "/aura/admin/settings",
   CONTACT_US: "/aura/contact-us",

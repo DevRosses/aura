@@ -16,6 +16,10 @@ import UserDashboard from "../pages/DashboardUserPage";
 import ContactUs from "../pages/ContactUsPage";
 import AboutUs from "../pages/AboutUsPage";
 import Rituals from "../pages/RitualsPage";
+import AdminLayout from "../components/admin/AdminLayout";
+import ProductsAdminPage from "../pages/admin/ProductsAdminPage";
+import UsersAdminPage from "../pages/admin/UsersAdminPage";
+import PermissionsAdminPage from "../pages/admin/PermissionsAdminPage";
 
 const AppRoutes = () => {
   return (
@@ -45,6 +49,39 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+
+      <Route
+        path={ROUTES.ADMIN_PRODUCTS}
+        element={
+          <ProtectedRoute allowedRole="admin">
+            <AdminLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<ProductsAdminPage />} />
+      </Route>
+
+      <Route
+        path={ROUTES.ADMIN_USERS}
+        element={
+          <ProtectedRoute allowedRole="admin">
+            <AdminLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<UsersAdminPage />} />
+      </Route>
+
+      <Route
+        path={ROUTES.ADMIN_SETTINGS}
+        element={
+          <ProtectedRoute allowedRole="admin">
+            <AdminLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<PermissionsAdminPage />} />
+      </Route>
 
       <Route
         path={ROUTES.USER_DASHBOARD}
