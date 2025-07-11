@@ -1,0 +1,9 @@
+.cart-summary {
+  margin-top: 2rem;
+  text-align: right;
+}
+
+.cart-summary h4 {
+  font-weight: bold;
+  color: var(--color-primario);
+}

@@ -2,13 +2,15 @@ import CartCard from "../components/ui/CartCard";
 import { useCart } from "../hooks/useCart";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../constants/routes";
+import "../assets/styles/pages/CartPage.css"; 
 
 function CartPage() {
-  const { cartItems } = useCart();
+  const { cartItems, totalPrice } = useCart();
+  
   const navigate = useNavigate();
 
   if (!cartItems) {
-    return <h2>Cargando...</h2>; // Solo si por alguna razón no llega el contexto
+    return <h2>Cargando...</h2>;
   }
 
   if (cartItems.length === 0) {
@@ -34,6 +36,16 @@ function CartPage() {
       {cartItems.map((item) => (
         <CartCard key={item.id} cartItems={item} />
       ))}
+
+      <div className="mt-4 text-end">
+        <h4>Total: ${totalPrice.toFixed(2)}</h4>
+        <button
+          className="btn btn-success mt-2"
+          onClick={() => navigate(ROUTES.PAYMENT)}
+        >
+          Finalizar compra
+        </button>
+      </div>
     </div>
   );
 }
