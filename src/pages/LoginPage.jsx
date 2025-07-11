@@ -8,26 +8,35 @@ function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     login(email, password)
       .then(() => {
-        
-          navigate(ROUTES.DASHBOARD);
-        dispararSweetBasico("success", "Inicio de sesión exitoso","Bienvenido de nuevo", "Continuar");
+        navigate(ROUTES.DASHBOARD);
+        dispararSweetBasico(
+          "success",
+          "Inicio de sesión exitoso",
+          "Bienvenido de nuevo",
+          "Continuar"
+        );
       })
       .catch((error) => {
-        dispararSweetBasico("error", "Error al iniciar sesión", error.message, "Inténtalo de nuevo");
+        dispararSweetBasico(
+          "error",
+          "Error al iniciar sesión",
+          error.message,
+          "Inténtalo de nuevo"
+        );
       });
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="container mt-5">
-        <div className="mb-2">
+      <form onSubmit={handleSubmit} className="container-fluid m-4 pt-5">
+        <h2 className="text-center">Ingresa</h2>
+        <div className="mb-4">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email
           </label>
@@ -42,7 +51,7 @@ function LoginPage() {
             Nunca compartiremos su correo electrónico con nadie más.
           </div>
         </div>
-        <div className="mb-2">
+        <div className="mb-4">
           <label htmlFor="exampleInputPassword1" className="form-label">
             Contraseña
           </label>
@@ -57,18 +66,29 @@ function LoginPage() {
           Entrar
         </button>
       </form>
-      <p className="mt-3">
-        ¿No tienes una cuenta? <Link to={ROUTES.REGISTER}>Regístrate</Link>
-      </p>
-      <p>
-        ¿Olvidaste tu contraseña?{" "}
-        <button
-          className="text-primary"
-          onClick={() => dispararSweetBasico("Funcionalidad en desarrollo")}
-        >
-          Recuperar contraseña
-        </button>
-      </p>
+      <div className="container-fluid m-4 pt-5  ">
+        <p className="pt-3">
+          ¿No tienes una cuenta?{" "}
+          <button className="btn btn-sm btn-secondary ">
+            {" "}
+            <Link
+              to={ROUTES.REGISTER}
+              className="text-decoration-none text-light"
+            >
+              Regístrate
+            </Link>
+          </button>
+        </p>
+        <p className="pt-3">
+          ¿Olvidaste tu contraseña?{" "}
+          <button
+            className="btn btn-sm btn-secondary text-light"
+            onClick={() => dispararSweetBasico("Funcionalidad en desarrollo")}
+          >
+            <p className="text-light p-0 m-0">Recuperar</p>
+          </button>
+        </p>
+      </div>
     </>
   );
 }

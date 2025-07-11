@@ -10,29 +10,36 @@ import Register from "../pages/RegistrationPage";
 import Cart from "../pages/CartPage";
 import Payment from "../pages/PaymentPage";
 import ProductDetails from "../pages/ProductDetailPage";
-import Dashboard from "../pages/Dashboard";
-import AdminDashboard from "../pages/DashboardAdminPage";
 import UserDashboard from "../pages/DashboardUserPage";
 import ContactUs from "../pages/ContactUsPage";
 import AboutUs from "../pages/AboutUsPage";
 import Rituals from "../pages/RitualsPage";
+
+import Dashboard from "../pages/Dashboard";
+
+import AdminDashboard from "../pages/DashboardAdminPage";
 import AdminLayout from "../components/admin/AdminLayout";
 import ProductsAdminPage from "../pages/admin/ProductsAdminPage";
 import UsersAdminPage from "../pages/admin/UsersAdminPage";
 import PermissionsAdminPage from "../pages/admin/PermissionsAdminPage";
 
+import UserLayout from "../components/user/UserLayout";
+import UserFavoritesPage from "../pages/user/UserFavoritesPage";
+import UserHistoryPage from "../pages/user/UserHistoryPage";
+
 const AppRoutes = () => {
   return (
     <Routes>
+      {/* Public Routes */}
       <Route path={ROUTES.HOME} element={<Home />} />
       <Route path={ROUTES.PRODUCTS} element={<Products />} />
       <Route path={ROUTES.LOGIN} element={<Login />} />
       <Route path={ROUTES.REGISTER} element={<Register />} />
-      <Route path={ROUTES.CART} element={<Cart />} />
       <Route path={ROUTES.PRODUCT_DETAILS} element={<ProductDetails />} />
       <Route path={ROUTES.CONTACT_US} element={<ContactUs />} />
       <Route path={ROUTES.ABOUT_US} element={<AboutUs />} />
       <Route path={ROUTES.RITUALS} element={<Rituals />} />
+      {/* Recepcionist Routes */}
       <Route
         path={ROUTES.DASHBOARD}
         element={
@@ -41,6 +48,7 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+      {/* Admin Routes */}
       <Route
         path={ROUTES.ADMIN_DASHBOARD}
         element={
@@ -49,7 +57,6 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-
       <Route
         path={ROUTES.ADMIN_PRODUCTS}
         element={
@@ -60,7 +67,6 @@ const AppRoutes = () => {
       >
         <Route index element={<ProductsAdminPage />} />
       </Route>
-
       <Route
         path={ROUTES.ADMIN_USERS}
         element={
@@ -71,7 +77,6 @@ const AppRoutes = () => {
       >
         <Route index element={<UsersAdminPage />} />
       </Route>
-
       <Route
         path={ROUTES.ADMIN_PERMISSIONS}
         element={
@@ -82,7 +87,18 @@ const AppRoutes = () => {
       >
         <Route index element={<PermissionsAdminPage />} />
       </Route>
-
+      {/* User Routes */}
+    
+      <Route
+        path={ROUTES.CART}
+        element={
+          <ProtectedRoute allowedRole="user">
+            <UserLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<Cart />} />
+      </Route>
       <Route
         path={ROUTES.USER_DASHBOARD}
         element={
@@ -91,7 +107,27 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-
+      <Route
+        path={ROUTES.USER_FAVORITES}
+        element={
+          <ProtectedRoute allowedRole="user">
+            <UserLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<UserFavoritesPage />} />
+      </Route>
+      <Route
+        path={ROUTES.USER_HISTORY}
+        element={
+          <ProtectedRoute allowedRole="user">
+            <UserLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<UserHistoryPage />} />
+      </Route>
+      /* Payment Route */
       <Route
         path={ROUTES.PAYMENT}
         element={

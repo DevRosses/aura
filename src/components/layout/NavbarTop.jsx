@@ -27,8 +27,8 @@ function NavbarTop() {
   };
 
   return (
-    <header className="py-2 px-4 bg-light border-bottom sticky-top">
-      <div className="d-flex justify-content-between align-items-center">
+    <header className="sticky-top px-4 pt-3 pb-2 align-items-center justify-content-center">
+      <div className="d-flex justify-content-between align-items-center ">
         {/* Logo */}
         <Link to={ROUTES.HOME} className="text-dark text-decoration-none">
           <h3>AURA</h3>
@@ -36,10 +36,10 @@ function NavbarTop() {
         {/* Vínculos */}
         <div className="d-flex align-items-center">
           {user ? (
-            <div className="d-flex align-items-center">
+            <div className="d-flex align-items-center ">
               <Icon icon="mdi:account" className="me-2" />
               <span className="me-2">
-                Hola, <span className="fw-bold">{user.email}</span>
+                Hola, <span className="fw">{user.email}</span>
               </span>
               <button
                 className="btn btn-link text-decoration-none"

@@ -1,9 +1,8 @@
+import UserLayout from "../components/user/UserLayout";
+
 function DashboardUserPage() {
   return (
-    <div>
-      <h1>🧑‍🍳 Sala de Empleados (User)</h1>
-      <p>Welcome to the User Dashboard!</p>
-    </div>
+    <UserLayout/>
   );
 }
 

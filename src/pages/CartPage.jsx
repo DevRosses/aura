@@ -29,9 +29,9 @@ function CartPage() {
   }
 
   return (
-    <div>
-      <h2>Estás a un paso de completar tu ritual.</h2>
-      <p>Tienes {cartItems.length} productos en tu carrito.</p>
+    <div className="container-fluid mt-5">
+      <h2 className="text-center">Estás a un paso de completar tu ritual.</h2>
+      <p className="text-center">Tienes {cartItems.length} productos en tu carrito.</p>
 
       {cartItems.map((item) => (
         <CartCard key={item.id} cartItems={item} />
