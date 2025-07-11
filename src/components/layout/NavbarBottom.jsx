@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { ROUTES } from "../../constants/routes";
 import { Icon } from "@iconify/react";
@@ -9,11 +9,11 @@ function NavbarBottom() {
   const navBar = [
     { to: ROUTES.HOME, icon: "hugeicons:castle-01" },
     { to: ROUTES.ABOUT_US, icon: "fluent:planet-32-regular" },
+    { to: ROUTES.PRODUCTS, icon: "fluent:wand-24-regular" },
     {
       to: ROUTES.RITUALS,
       icon: "fluent-emoji-high-contrast:crystal-ball",
-      },
-      { to: ROUTES.PRODUCTS, icon: "fluent:wand-24-regular" },
+    },
     { to: ROUTES.CONTACT_US, icon: "ph:phone-call" },
   ];
 

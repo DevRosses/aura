@@ -58,7 +58,7 @@ const AppRoutes = () => {
       <Route
         path={ROUTES.PAYMENT}
         element={
-          <ProtectedRoute>
+          <ProtectedRoute allowedRole="user">
             <Payment />
           </ProtectedRoute>
         }
