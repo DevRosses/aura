@@ -1,41 +1,37 @@
 import { createContext, useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase/config";
-import { getUserRole } from "../services/userService";
+import { doc, getDoc } from "firebase/firestore";
+import { auth, db } from "../firebase/config";
 import * as authService from "../services/authService";
 
-
-const AuthContext = createContext({
-  user: null,
-  userRole: null,
-  login: () => {},
-  register: () => {},
-  logout: () => {},
-});
-
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [userRole, setUserRole] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setLoading(true);
       if (currentUser) {
-        
-        const role = await getUserRole(currentUser.uid);
+        const docRef = doc(db, "users", currentUser.uid);
+        const docSnap = await getDoc(docRef);
+
         setUser(currentUser);
-        setUserRole(role);
+
+        if (docSnap.exists()) {
+          setUserProfile(docSnap.data());
+        } else {
+          setUserProfile(null);
+        }
       } else {
         setUser(null);
-        setUserRole(null);
+        setUserProfile(null);
       }
       setLoading(false);
     });
 
-    
     return () => unsubscribe();
   }, []);
 
@@ -43,8 +39,8 @@ export const AuthProvider = ({ children }) => {
     return authService.loginUser(email, password);
   };
 
-  const register = (email, password) => {
-    return authService.registerUser(email, password);
+  const register = (email, password, userData) => {
+    return authService.registerUser(email, password, userData);
   };
 
   const logout = () => {
@@ -53,7 +49,8 @@ export const AuthProvider = ({ children }) => {
 
   const value = {
     user,
-    userRole,
+    userProfile,
+    loading,
     login,
     register,
     logout,
@@ -65,5 +62,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-export { AuthContext };

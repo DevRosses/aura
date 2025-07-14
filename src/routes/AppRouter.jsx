@@ -21,7 +21,7 @@ import AdminDashboard from "../pages/DashboardAdminPage";
 import AdminLayout from "../components/admin/AdminLayout";
 import ProductsAdminPage from "../pages/admin/ProductsAdminPage";
 import UsersAdminPage from "../pages/admin/UsersAdminPage";
-import PermissionsAdminPage from "../pages/admin/PermissionsAdminPage";
+
 
 import UserLayout from "../components/user/UserLayout";
 import UserFavoritesPage from "../pages/user/UserFavoritesPage";
@@ -77,18 +77,7 @@ const AppRoutes = () => {
       >
         <Route index element={<UsersAdminPage />} />
       </Route>
-      <Route
-        path={ROUTES.ADMIN_PERMISSIONS}
-        element={
-          <ProtectedRoute allowedRole="admin">
-            <AdminLayout />
-          </ProtectedRoute>
-        }
-      >
-        <Route index element={<PermissionsAdminPage />} />
-      </Route>
       {/* User Routes */}
-    
       <Route
         path={ROUTES.CART}
         element={

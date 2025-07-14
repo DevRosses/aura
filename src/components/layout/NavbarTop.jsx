@@ -8,7 +8,7 @@ import { dispararSweetDecision } from "../../utils/SweetAlert";
 
 function NavbarTop() {
   const { cartCount } = useCart();
-  const { user, logout } = useAuth();
+  const { userProfile, logout, loading } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -26,6 +26,10 @@ function NavbarTop() {
     });
   };
 
+  if (loading) {
+    return <header className="sticky-top px-4 pt-3 pb-2"></header>;
+  }
+
   return (
     <header className="sticky-top px-4 pt-3 pb-2 align-items-center justify-content-center">
       <div className="d-flex justify-content-between align-items-center ">
@@ -35,11 +39,11 @@ function NavbarTop() {
         </Link>
         {/* Vínculos */}
         <div className="d-flex align-items-center">
-          {user ? (
+          {userProfile ? (
             <div className="d-flex align-items-center ">
               <Icon icon="mdi:account" className="me-2" />
               <span className="me-2">
-                Hola, <span className="fw">{user.email}</span>
+                Hola, <span className="fw">{userProfile.nombre}</span>
               </span>
               <button
                 className="btn btn-link text-decoration-none"

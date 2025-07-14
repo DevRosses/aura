@@ -23,12 +23,6 @@ const SidebarAdmin = () => {
           👥
         </NavLink>
 
-        <NavLink
-          to={ROUTES.ADMIN_PERMISSIONS}
-          className="text-decoration-none text-white d-flex align-items-center gap-1"
-        >
-          🔐
-        </NavLink>
       </div>
     </div>
   );

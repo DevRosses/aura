@@ -1,13 +1,29 @@
-import { useApi } from "../hooks/useApi";
+import { useState, useEffect } from "react";
 import { getProducts } from "../services/productService";
 import ProductCard from "../components/ui/ProductCard";
 
 const Products = () => {
-  const { data: products, loading, error } = useApi(getProducts);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  if (products) {
-    console.log("📦 Productos recibidos de la API:", products);
-  }
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true); 
+        const productList = await getProducts(); 
+        setProducts(productList); 
+        console.log("📦 Productos recibidos de Firestore:", productList);
+      } catch (err) {
+        setError(err);
+        console.error("Error al cargar productos:", err);
+      } finally {
+        setLoading(false); // Termina la carga (haya funcionado o no)
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   if (loading)
     return (

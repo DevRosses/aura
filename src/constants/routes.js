@@ -12,7 +12,7 @@ export const ROUTES = {
 
   ADMIN_PRODUCTS: "/aura/admin/products",
   ADMIN_USERS: "/aura/admin/users",
-  ADMIN_PERMISSIONS: "/aura/admin/permissions",
+ 
 
   USER_FAVORITES: "/aura/user/favorites",
   USER_HISTORY: "/aura/user/history",
