@@ -3,8 +3,14 @@ import { Link } from "react-router-dom";
 import { dispararSweetBasico } from "../utils/SweetAlert";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Icon } from "@iconify/react";
+
+
 
 function LoginPage() {
+  const [showPassword, setShowPassword] = useState(false);
+
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -55,12 +61,22 @@ function LoginPage() {
           <label htmlFor="exampleInputPassword1" className="form-label">
             Contraseña
           </label>
-          <input
-            type="password"
-            name="password"
-            className="form-control"
-            id="exampleInputPassword1"
-          />
+
+          <div className="input-group">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              className="form-control"
+              id="exampleInputPassword1"
+            />
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              onClick={() => setShowPassword(!showPassword)} 
+            >
+              <Icon icon={showPassword ? "mdi:eye-off" : "mdi:eye"} />
+            </button>
+          </div>
         </div>
         <button type="submit" className="btn btn-sm btn-warning me-3">
           Entrar

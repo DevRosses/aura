@@ -3,8 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../constants/routes";
 import { Link } from "react-router-dom";
 import { dispararSweetBasico } from "../utils/SweetAlert";
+import { useState } from "react";
+import { Icon } from "@iconify/react";
+
 function RegistrationPage() {
-  
+  const [showPassword, setShowPassword] = useState(false);
   const { register } = useAuth(); // usas la función register del contexto
   const navigate = useNavigate();
 
@@ -16,14 +19,12 @@ function RegistrationPage() {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    
     const userData = { nombre, apellido };
 
     try {
-
       await register(email, password, userData);
 
-      navigate(ROUTES.LOGIN); 
+      navigate(ROUTES.LOGIN);
       dispararSweetBasico(
         "success",
         "¡Registro exitoso!",
@@ -84,12 +85,22 @@ function RegistrationPage() {
           <label htmlFor="exampleInputPassword1" className="form-label">
             Contraseña
           </label>
-          <input
-            type="password"
-            name="password"
-            className="form-control"
-            id="exampleInputPassword1"
-          />
+
+          <div className="input-group">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              className="form-control"
+              id="exampleInputPassword1"
+            />
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              <Icon icon={showPassword ? "mdi:eye-off" : "mdi:eye"} />
+            </button>
+          </div>
         </div>
 
         <button type="submit" className="btn btn-sm btn-warning me-3">
