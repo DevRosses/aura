@@ -9,6 +9,9 @@ import {
   arrayRemove,
 } from "firebase/firestore";
 import { db } from "../firebase/config";
+import { recuperarPassword } from "../firebase/config";
+import { dispararSweetBasico } from "../utils/SweetAlert";
+
 
 
 // Obtiene el rol de un usuario
@@ -32,6 +35,23 @@ export const getUsers = async () => {
     ...doc.data(),
   }));
   return userList;
+};
+
+export const getUserProfile = async (uid) => {
+  // Una pequeña guarda para evitar errores si el uid es nulo
+  if (!uid) return null;
+
+  const userDocRef = doc(db, "users", uid);
+  const userDocSnap = await getDoc(userDocRef);
+
+  if (userDocSnap.exists()) {
+    // Si el documento existe, devuelve todos sus datos
+    return userDocSnap.data();
+  } else {
+    // Esto puede pasar si un usuario se elimina de Firestore pero no de Auth
+    console.warn("No se encontró un perfil para el usuario con UID:", uid);
+    return null;
+  }
 };
 
 // Actualiza los datos de un usuario específico.
@@ -67,5 +87,39 @@ export const toggleFavorite = async (userId, productId) => {
         favorites: arrayUnion(productId),
       });
     }
+  }
+};
+
+//  Proceso completo de recuperación de contraseña.
+export const sendPasswordResetEmail = async (email) => {
+  // Primero, validamos que el email no esté vacío
+  if (!email || email.trim() === "") {
+    dispararSweetBasico(
+      "info",
+      "Falta tu correo",
+      "Por favor, escribe tu email en el campo correspondiente.",
+      "Entendido"
+    );
+    return; // Detenemos la ejecución si no hay email
+  }
+
+  try {
+    await recuperarPassword(email);
+    // Mensaje de éxito genérico por seguridad
+    dispararSweetBasico(
+      "success",
+      "Solicitud Enviada",
+      `Si la dirección ${email} está registrada, recibirás un correo en breve.`,
+      "¡Genial!"
+    );
+  } catch (error) {
+    // Incluso si hay un error, mostramos un mensaje genérico para no dar pistas
+    console.error("Error al intentar enviar correo de recuperación:", error);
+    dispararSweetBasico(
+      "error",
+      "Error",
+      "Ocurrió un problema al procesar tu solicitud. Inténtalo más tarde.",
+      "Ok"
+    );
   }
 };

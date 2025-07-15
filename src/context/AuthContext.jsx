@@ -1,8 +1,12 @@
 import { createContext, useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
-import { auth, db } from "../firebase/config";
-import * as authService from "../services/authService";
+import { auth } from "../firebase/config"; 
+import { getUserProfile } from "../services/userService";
+
+import {
+  loginUser as loginService,
+  registerUser as registerService,
+} from "../services/authService";
 
 export const AuthContext = createContext();
 
@@ -14,17 +18,10 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setLoading(true);
-      if (currentUser) {
-        const docRef = doc(db, "users", currentUser.uid);
-        const docSnap = await getDoc(docRef);
-
+      if (currentUser && currentUser.emailVerified) {
+        const profile = await getUserProfile(currentUser.uid);
         setUser(currentUser);
-
-        if (docSnap.exists()) {
-          setUserProfile(docSnap.data());
-        } else {
-          setUserProfile(null);
-        }
+        setUserProfile(profile);
       } else {
         setUser(null);
         setUserProfile(null);
@@ -35,16 +32,19 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  // Las funciones ahora solo llaman a los servicios importados
   const login = (email, password) => {
-    return authService.loginUser(email, password);
+    return loginService(email, password);
   };
 
-  const register = (email, password, userProfile) => {
-    return authService.registerUser(email, password, userProfile);
+  const register = (email, password, userData) => {
+    return registerService(email, password, userData);
   };
 
-  const logout = () => {
-    return authService.logoutUser();
+  // 3. Mejoramos la función de logout
+  const logout = async () => {
+    await auth.signOut();
+    // El listener onAuthStateChanged se encargará del resto
   };
 
   const value = {

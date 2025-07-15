@@ -24,24 +24,40 @@ function RegistrationPage() {
     try {
       await register(email, password, userData);
 
-      navigate(ROUTES.LOGIN);
       dispararSweetBasico(
         "success",
         "¡Registro exitoso!",
         "Ahora puedes iniciar sesión.",
         "¡Genial!"
       );
-    } catch (error) {
-      console.error("Error en el registro:", error);
-      dispararSweetBasico("error", "Error en el registro", error.message, "Ok");
+      navigate(ROUTES.LOGIN);
+    } catch (error) { 
+      if (error.code === 'auth/email-already-in-use') {
+        dispararSweetBasico(
+          "error",
+          "Correo ya registrado",
+          "La dirección de correo que ingresaste ya está en uso. Por favor, intenta con otra o inicia sesión.",
+          "Entendido"
+        );
+      } else {
+        
+        dispararSweetBasico(
+          "error",
+          "Error en el registro",
+          "Ocurrió un problema durante el registro. Por favor, verifica tus datos e inténtalo de nuevo.",
+          "Ok"
+        );
+      }
     }
-  };
+  }
+
+  
   return (
     <>
       <form onSubmit={handleSubmit} className="container-fluid m-4 pt-5">
         <h2 className="text-center">Regístrate</h2>
 
-        {/* CAMPO NUEVO: Nombre */}
+       
         <div className="mb-4">
           <label htmlFor="nombreInput" className="form-label">
             Nombre
@@ -55,7 +71,7 @@ function RegistrationPage() {
           />
         </div>
 
-        {/* CAMPO NUEVO: Apellido */}
+       
         <div className="mb-4">
           <label htmlFor="apellidoInput" className="form-label">
             Apellido

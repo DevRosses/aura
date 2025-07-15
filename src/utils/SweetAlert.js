@@ -1,6 +1,8 @@
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 
+
+
 const swalBaseConfig = {
   customClass: {
     popup: "swal2-root",
@@ -89,3 +91,19 @@ export const dispararSweetSelect = (title, text, options, currentValue) => {
   });
 };
 
+export const dispararAlertaVerificacion = async (onConfirm) => {
+  const result = await Swal.fire({
+    title: "Verifica tu correo electrónico",
+    text: "No puedes iniciar sesión hasta que verifiques tu correo. ¿Quieres que te enviemos el enlace de nuevo?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Sí, reenviar correo",
+    cancelButtonText: "Cancelar",
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+  });
+  // Si el usuario confirma, llamamos a la función que nos pasaron
+  if (result.isConfirmed) {
+    onConfirm();
+  }
+};
