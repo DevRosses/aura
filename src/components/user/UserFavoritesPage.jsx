@@ -31,6 +31,13 @@ function UserFavoritesPage() {
     fetchFavorites();
   }, [userProfile]);
 
+  // Esta función se encarga de eliminar un producto de la lista visible.
+  const handleFavoriteChange = (productId) => {
+    setFavoriteProducts((currentProducts) =>
+      currentProducts.filter((p) => p.id !== productId)
+    );
+  };
+
   if (loading) {
     return (
       <div className="text-center mt-5">
@@ -46,7 +53,11 @@ function UserFavoritesPage() {
       {favoriteProducts.length > 0 ? (
         <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 m-3">
           {favoriteProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              onFavoriteChange={handleFavoriteChange}
+            />
           ))}
         </div>
       ) : (

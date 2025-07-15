@@ -10,7 +10,6 @@ import Register from "../pages/RegistrationPage";
 import Cart from "../pages/CartPage";
 import Payment from "../pages/PaymentPage";
 import ProductDetails from "../pages/ProductDetailPage";
-import UserDashboard from "../pages/DashboardUserPage";
 import ContactUs from "../pages/ContactUsPage";
 import AboutUs from "../pages/AboutUsPage";
 import Rituals from "../pages/RitualsPage";
@@ -18,11 +17,13 @@ import Rituals from "../pages/RitualsPage";
 import Dashboard from "../pages/Dashboard";
 
 import AdminDashboard from "../pages/DashboardAdminPage";
+import UserDashboard from "../pages/DashboardUserPage";
 import AdminLayout from "../components/admin/AdminLayout";
 import ProductsAdminPage from "../pages/admin/ProductsAdminPage";
 import UsersAdminPage from "../pages/admin/UsersAdminPage";
 
-import UserLayout from "../components/user/UserLayout";
+import UserCart from "../pages/CartPage";
+
 
 
 
@@ -81,7 +82,7 @@ const AppRoutes = () => {
         path={ROUTES.CART}
         element={
           <ProtectedRoute allowedRole="user">
-            <UserLayout />
+            <UserCart />
           </ProtectedRoute>
         }
       >
@@ -91,11 +92,11 @@ const AppRoutes = () => {
         path={ROUTES.USER_DASHBOARD}
         element={
           <ProtectedRoute allowedRole="user">
-            <UserLayout />
+            <UserDashboard />
           </ProtectedRoute>
         }
-      >
-      </Route>
+      />
+     
       
       /* Payment Route */
       <Route

@@ -14,7 +14,7 @@ const favoriteIconStyle = {
   filter: "drop-shadow(0 0 3px rgba(0, 0, 0, 0.7))",
 };
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onFavoriteChange }) => {
   const { addToCart } = useCart();
   const { user, userProfile, setUserProfile } = useAuth(); // Usamos el perfil del usuario
 
@@ -33,6 +33,10 @@ const ProductCard = ({ product }) => {
       : [...(userProfile.favorites || []), product.id];
 
     setUserProfile({ ...userProfile, favorites: updatedFavorites });
+
+    if (onFavoriteChange) {
+      onFavoriteChange(product.id);
+    }
   };
 
   return (
