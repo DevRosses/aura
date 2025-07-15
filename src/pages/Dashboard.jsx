@@ -8,11 +8,11 @@ const Dashboard = () => {
 
   console.log("Rol del usuario desde el Receptionista Dashboard:", userProfile.role);
 
-  if (userProfile.role === "admin") {
+  if (userProfile && userProfile.role === "admin") {
     return <AdminDashboard />;
   }
 
-  if (userProfile.role === "user") {
+  if (userProfile && userProfile.role === "user") {
     return <UserDashboard />;
   }
 

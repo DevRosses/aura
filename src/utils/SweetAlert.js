@@ -55,3 +55,23 @@ export function dispararSweetConfirmacion() {
     cancelButtonText: "Cancelar",
   });
 }
+
+export const dispararSweetInput = (title, label) => {
+  return Swal.fire({
+    title,
+    input: "text",
+    inputLabel: label,
+    showCancelButton: true,
+    confirmButtonText: "Guardar",
+    cancelButtonText: "Cancelar",
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    inputValidator: (value) => {
+      if (!value) {
+        return "¡Necesitas escribir algo!";
+      }
+    },
+  })
+}
+
+

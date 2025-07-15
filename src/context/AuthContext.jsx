@@ -39,8 +39,8 @@ export const AuthProvider = ({ children }) => {
     return authService.loginUser(email, password);
   };
 
-  const register = (email, password, userData) => {
-    return authService.registerUser(email, password, userData);
+  const register = (email, password, userProfile) => {
+    return authService.registerUser(email, password, userProfile);
   };
 
   const logout = () => {

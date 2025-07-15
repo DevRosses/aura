@@ -15,7 +15,7 @@ const ProtectedRoute = ({ children, allowedRole }) => {
     return <Navigate to={ROUTES.LOGIN} replace />;
   }
   // Si el rol no es el permitido, lo mandamos a la entrada.
-  if (allowedRole && userProfile.role !== allowedRole) {
+  if (allowedRole && userProfile && userProfile.role !== allowedRole) {
     return <Navigate to={ROUTES.DASHBOARD} replace />;
   }
   // Si tiene credencial, puede pasar.
