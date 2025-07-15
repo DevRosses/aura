@@ -22,10 +22,9 @@ import AdminLayout from "../components/admin/AdminLayout";
 import ProductsAdminPage from "../pages/admin/ProductsAdminPage";
 import UsersAdminPage from "../pages/admin/UsersAdminPage";
 
-
 import UserLayout from "../components/user/UserLayout";
-import UserFavoritesPage from "../pages/user/UserFavoritesPage";
-import UserHistoryPage from "../pages/user/UserHistoryPage";
+
+
 
 const AppRoutes = () => {
   return (
@@ -92,30 +91,12 @@ const AppRoutes = () => {
         path={ROUTES.USER_DASHBOARD}
         element={
           <ProtectedRoute allowedRole="user">
-            <UserDashboard />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path={ROUTES.USER_FAVORITES}
-        element={
-          <ProtectedRoute allowedRole="user">
             <UserLayout />
           </ProtectedRoute>
         }
       >
-        <Route index element={<UserFavoritesPage />} />
       </Route>
-      <Route
-        path={ROUTES.USER_HISTORY}
-        element={
-          <ProtectedRoute allowedRole="user">
-            <UserLayout />
-          </ProtectedRoute>
-        }
-      >
-        <Route index element={<UserHistoryPage />} />
-      </Route>
+      
       /* Payment Route */
       <Route
         path={ROUTES.PAYMENT}

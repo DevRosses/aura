@@ -1,8 +1,12 @@
-import UserLayout from "../components/user/UserLayout";
+import SidebarUser from "../components/user/SidebarUser";
+import UserFavoritesPage from "../components/user/UserFavoritesPage";
 
 function DashboardUserPage() {
   return (
-    <UserLayout/>
+    <>
+      <SidebarUser />
+      <UserFavoritesPage />
+    </>
   );
 }
 

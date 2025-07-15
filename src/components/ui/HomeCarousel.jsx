@@ -52,7 +52,7 @@ function HomeCarousel() {
         </div>
         <div className="carousel-item">
           <img
-            src="https://images.unsplash.com/photo-1556760544-74068565f05c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src="https://images.unsplash.com/photo-1629380107895-bb31e18bdc64?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDV8fHNraW4lMjBjYXJlfGVufDB8MHwwfHx8Mg%3D%3D"
             className="d-block w-100"
             alt="promo 3"
           />

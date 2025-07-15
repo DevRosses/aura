@@ -3,7 +3,10 @@ import {
   getDocs,
   doc,
   updateDoc,
-  deleteDoc,getDoc
+  deleteDoc,
+  getDoc,
+  arrayUnion,
+  arrayRemove,
 } from "firebase/firestore";
 import { db } from "../firebase/config";
 
@@ -42,4 +45,27 @@ export const updateUser = async (userId, dataToUpdate) => {
 export const deleteUser = async (userId) => {
   const userDoc = doc(db, "users", userId);
   await deleteDoc(userDoc);
+};
+
+// Agrega o elimina un producto del array de favoritos de un usuario.
+export const toggleFavorite = async (userId, productId) => {
+  const userDocRef = doc(db, "users", userId);
+  const userDoc = await getDoc(userDocRef);
+
+  if (userDoc.exists()) {
+    const userData = userDoc.data();
+    const favorites = userData.favorites || [];
+
+    if (favorites.includes(productId)) {
+      // Si ya es favorito, lo quitamos
+      await updateDoc(userDocRef, {
+        favorites: arrayRemove(productId),
+      });
+    } else {
+      // Si no es favorito, lo agregamos
+      await updateDoc(userDocRef, {
+        favorites: arrayUnion(productId),
+      });
+    }
+  }
 };

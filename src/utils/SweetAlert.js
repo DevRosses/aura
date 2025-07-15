@@ -74,4 +74,18 @@ export const dispararSweetInput = (title, label) => {
   })
 }
 
+export const dispararSweetSelect = (title, text, options, currentValue) => {
+  return Swal.fire({
+    title,
+    text,
+    input: "select",
+    inputOptions: options,
+    inputValue: currentValue, // Esto pre-selecciona la opción actual
+    showCancelButton: true,
+    confirmButtonText: "Guardar",
+    cancelButtonText: "Cancelar",
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+  });
+};
 

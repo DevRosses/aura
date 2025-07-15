@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { getUsers, updateUser, deleteUser } from "../../services/userService";
 import { Icon } from "@iconify/react";
-// 1. Importa la nueva función junto a las demás
 import {
   dispararSweetDecision,
   dispararSweetBasico,
-  dispararSweetInput,
+  dispararSweetSelect,
 } from "../../utils/SweetAlert";
 
 const UsersAdminPage = () => {
@@ -35,20 +34,25 @@ const UsersAdminPage = () => {
 
   // 2. Modifica la función para usar el nuevo SweetAlert
   const handleEditRole = async (user) => {
-    const { value: newRole } = await dispararSweetInput(
+    const { value: newRole } = await dispararSweetSelect(
       "Editar Rol de Usuario",
-      `Rol actual: ${user.role}. Ingrese el nuevo rol (ej: user o admin):`
+      `Seleccione el nuevo rol para ${user.nombre}:`,
+      {
+        user: "User", 
+        admin: "Admin",
+      },
+      user.role 
     );
 
-    // Si el usuario ingresó un valor y no canceló
+    // 
     if (newRole) {
       try {
-        await updateUser(user.id, { role: newRole.trim().toLowerCase() });
-        fetchUsers(); // Recargar la lista de usuarios
+        await updateUser(user.id, { role: newRole });
+        fetchUsers();
         dispararSweetBasico(
           "success",
           "¡Rol actualizado!",
-          "El rol del usuario ha sido cambiado correctamente.",
+          "El rol del usuario ha sido cambiado.",
           "Hecho"
         );
       } catch (error) {
