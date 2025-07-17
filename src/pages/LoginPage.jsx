@@ -1,13 +1,13 @@
 import { ROUTES } from "../constants/routes";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { dispararSweetBasico } from "../utils/SweetAlert";
 import { dispararAlertaVerificacion } from "../utils/SweetAlert";
 import { useAuth } from "../hooks/useAuth";
 import { useState, useEffect } from "react";
-import { Icon } from "@iconify/react";
 import { sendPasswordResetEmail } from "../services/userService";
 import { auth } from "../firebase/config";
 import { sendEmailVerification } from "firebase/auth";
+import LoginForm from "../components/ui/LoginForm";
 
 function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -85,75 +85,7 @@ function LoginPage() {
       });
   };
 
-  return (
-    <>
-      <form onSubmit={handleSubmit} className="container-fluid m-4 pt-5">
-        <h2 className="text-center">Ingresa</h2>
-        <div className="mb-4">
-          <label htmlFor="exampleInputEmail1" className="form-label">
-            Email
-          </label>
-
-          <input
-            type="email"
-            name="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="exampleInputPassword1" className="form-label">
-            Contraseña
-          </label>
-          <div className="input-group">
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              className="form-control"
-              id="exampleInputPassword1"
-              value={formData.password}
-              onChange={handleChange}
-            />
-            <button
-              className="btn btn-outline-secondary"
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              <Icon icon={showPassword ? "mdi:eye-off" : "mdi:eye"} />
-            </button>
-          </div>
-        </div>
-        <button type="submit" className="btn btn-sm btn-warning me-3">
-          Entrar
-        </button>
-      </form>
-      <div className="container-fluid m-4 pt-5">
-        <p className="pt-3">
-          ¿No tienes una cuenta?{" "}
-          <button className="btn btn-sm btn-secondary">
-            <Link
-              to={ROUTES.REGISTER}
-              className="text-decoration-none text-light"
-            >
-              Regístrate
-            </Link>
-          </button>
-        </p>
-        <p className="pt-3">
-          ¿Olvidaste tu contraseña?{" "}
-          <button
-            type="button"
-            className="btn btn-sm btn-secondary text-light"
-            onClick={() => sendPasswordResetEmail(formData.email)}
-          >
-            <p className="text-light p-0 m-0">Recuperar</p>
-          </button>
-        </p>
-      </div>
-    </>
-  );
+  return <LoginForm handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} showPassword={showPassword} setShowPassword={setShowPassword} sendPasswordResetEmail={sendPasswordResetEmail} />;
 }
 
 export default LoginPage;

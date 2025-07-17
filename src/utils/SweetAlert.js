@@ -1,32 +1,31 @@
 import Swal from "sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
 
-
-
+/**
+ * Configuración base para todas las alertas de Swal.
+ * Unifica el estilo de "Aura" en un solo lugar.
+ */
 const swalBaseConfig = {
+ 
   customClass: {
-    popup: "swal2-root",
-    confirmButton: "swal2-confirm",
-    cancelButton: "swal2-cancel",
-    title: "swal2-title",
-    content: "swal2-content",
+    popup: "aura-swal-popup", // Contenedor principal de la alerta
+    title: "aura-swal-title", // Título
+    htmlContainer: "aura-swal-html", // Contenedor del texto/contenido
+    confirmButton: "btn btn-primary", // Botón de confirmar
+    cancelButton: "btn btn-secondary", // Botón de cancelar
   },
-  background: "var(--color-secundario)",
-  color: "var(--color-primario)",
-  confirmButtonColor: "var(--color-acento)",
-  cancelButtonColor: "var(--color-acento)",
-  buttonsStyling: false,
-  showClass: {
-    popup: "fade-in",
-  },
-  hideClass: {
-    popup: "",
-  },
+  buttonsStyling: false, // Le decimos a Swal que no aplique sus propios estilos a los botones
 };
 
-export function dispararSweetBasico(icon, title, text, confirmButtonText) {
+
+
+export function dispararSweetBasico(
+  icon,
+  title,
+  text,
+  confirmButtonText = "Ok"
+) {
   return Swal.fire({
-    ...swalBaseConfig,
+    ...swalBaseConfig, // Aplicamos nuestro tema
     icon,
     title,
     text,
@@ -34,75 +33,81 @@ export function dispararSweetBasico(icon, title, text, confirmButtonText) {
   });
 }
 
-
-export function dispararSweetDecision( icon, title, text, confirmButtonText, cancelButtonText) {
+export function dispararSweetDecision(
+  icon,
+  title,
+  text,
+  confirmButtonText,
+  cancelButtonText
+) {
   return Swal.fire({
-    ...swalBaseConfig,
+    ...swalBaseConfig, // Aplicamos nuestro tema
     icon,
     title,
     text,
     showCancelButton: true,
     confirmButtonText,
-    cancelButtonText
+    cancelButtonText,
+    reverseButtons: true, // Buena práctica para poner confirmar a la derecha
   });
 }
+
 export function dispararSweetConfirmacion() {
   return Swal.fire({
-    ...swalBaseConfig,
+    ...swalBaseConfig, // Aplicamos nuestro tema
     icon: "warning",
     title: "¿Estás seguro?",
     text: "Esta acción no se puede deshacer.",
     showCancelButton: true,
     confirmButtonText: "Sí, eliminar",
     cancelButtonText: "Cancelar",
+    reverseButtons: true,
   });
 }
 
 export const dispararSweetInput = (title, label) => {
   return Swal.fire({
+    ...swalBaseConfig, // Aplicamos nuestro tema
     title,
     input: "text",
     inputLabel: label,
     showCancelButton: true,
     confirmButtonText: "Guardar",
     cancelButtonText: "Cancelar",
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
     inputValidator: (value) => {
       if (!value) {
         return "¡Necesitas escribir algo!";
       }
     },
-  })
-}
+  });
+};
 
 export const dispararSweetSelect = (title, text, options, currentValue) => {
   return Swal.fire({
+    ...swalBaseConfig, // Aplicamos nuestro tema
     title,
     text,
     input: "select",
     inputOptions: options,
-    inputValue: currentValue, // Esto pre-selecciona la opción actual
+    inputValue: currentValue,
     showCancelButton: true,
     confirmButtonText: "Guardar",
     cancelButtonText: "Cancelar",
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
   });
 };
 
 export const dispararAlertaVerificacion = async (onConfirm) => {
   const result = await Swal.fire({
+    ...swalBaseConfig, // Aplicamos nuestro tema
     title: "Verifica tu correo electrónico",
     text: "No puedes iniciar sesión hasta que verifiques tu correo. ¿Quieres que te enviemos el enlace de nuevo?",
     icon: "warning",
     showCancelButton: true,
     confirmButtonText: "Sí, reenviar correo",
     cancelButtonText: "Cancelar",
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
+    reverseButtons: true,
   });
-  // Si el usuario confirma, llamamos a la función que nos pasaron
+
   if (result.isConfirmed) {
     onConfirm();
   }

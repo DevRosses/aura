@@ -48,10 +48,71 @@ img {
   display: block;
 }
 
+/* ===== ESTILOS DE BOTONES REUTILIZABLES ===== */
+.btn {
+  display: inline-block;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius);
+  transition: var(--transition-smooth);
+}
+
+/* Botón principal (para acciones importantes) */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: #7a8a5a; /* Un tono ligeramente más oscuro del primario */
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-light);
+}
+
+/* Botón secundario (para acciones alternativas) */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Botón de ancho completo */
+.btn-block {
+  width: 100%;
+  display: block;
+}
+
 /* Clase de utilidad para centrar contenido */
 .container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--spacing-lg) 0;
+}
+
+.aura-swal-popup {
+  background-color: var(--color-background);
+  border-radius: var(--border-radius) !important;
+}
+
+.aura-swal-title {
+  color: var(--color-text);
+  font-family: var(--font-primary);
+}
+
+.aura-swal-html {
+  color: var(--color-text);
+  font-family: var(--font-primary);
 }
