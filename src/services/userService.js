@@ -10,7 +10,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { recuperarPassword } from "../firebase/config";
-import { dispararSweetBasico } from "../utils/SweetAlert";
+import { dispararSweetAlerta } from "../utils/SweetAlert";
 
 
 
@@ -94,7 +94,7 @@ export const toggleFavorite = async (userId, productId) => {
 export const sendPasswordResetEmail = async (email) => {
   // Primero, validamos que el email no esté vacío
   if (!email || email.trim() === "") {
-    dispararSweetBasico(
+    dispararSweetAlerta(
       "info",
       "Falta tu correo",
       "Por favor, escribe tu email en el campo correspondiente.",
@@ -106,7 +106,7 @@ export const sendPasswordResetEmail = async (email) => {
   try {
     await recuperarPassword(email);
     // Mensaje de éxito genérico por seguridad
-    dispararSweetBasico(
+    dispararSweetAlerta(
       "success",
       "Solicitud Enviada",
       `Si la dirección ${email} está registrada, recibirás un correo en breve.`,
@@ -115,7 +115,7 @@ export const sendPasswordResetEmail = async (email) => {
   } catch (error) {
     // Incluso si hay un error, mostramos un mensaje genérico para no dar pistas
     console.error("Error al intentar enviar correo de recuperación:", error);
-    dispararSweetBasico(
+    dispararSweetAlerta(
       "error",
       "Error",
       "Ocurrió un problema al procesar tu solicitud. Inténtalo más tarde.",

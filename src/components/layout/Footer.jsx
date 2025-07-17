@@ -1,7 +1,6 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
-import { Icon } from "@iconify/react";
 import "../../assets/styles/components/layout/Footer.css";
 
 function Footer() {

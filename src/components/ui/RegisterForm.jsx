@@ -2,6 +2,7 @@ import "../../assets/styles/components/ui/forms.css";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
+import { dispararSweetAlerta } from "../../utils/SweetAlert";
 
 function RegisterForm({
   setShowPassword,
@@ -93,8 +94,9 @@ function RegisterForm({
           <p className="pt-3">
             ¿Olvidaste tu contraseña?{" "}
             <button
+              type="button"
               className="btn btn-secondary btn-block"
-              onClick={() => dispararSweetBasico("Funcionalidad en desarrollo")}
+              onClick={() => sendPasswordResetEmail(formData.email)}
             >
               <p className="text-light p-0 m-0">Recuperar</p>
             </button>

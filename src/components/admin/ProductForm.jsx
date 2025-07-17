@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { createProduct, updateProduct } from "../../services/productService";
-import { dispararSweetBasico } from "../../utils/SweetAlert";
+import { dispararSweetAlerta } from "../../utils/SweetAlert";
 
 const ProductForm = ({ product, onSave }) => {
   const [formData, setFormData] = useState({
@@ -27,7 +27,7 @@ const ProductForm = ({ product, onSave }) => {
     try {
       if (product) {
         await updateProduct(product.id, formData);
-        dispararSweetBasico(
+        dispararSweetAlerta(
           "success",
           "Producto actualizado",
           "El producto se ha actualizado correctamente.",
@@ -35,7 +35,7 @@ const ProductForm = ({ product, onSave }) => {
         );
       } else {
         await createProduct(formData);
-        dispararSweetBasico(
+        dispararSweetAlerta(
           "success",
           "Producto creado",
           "El producto se ha creado correctamente.",
@@ -44,7 +44,7 @@ const ProductForm = ({ product, onSave }) => {
       }
       onSave(); // Llama a la función para recargar productos y cerrar el formulario
     } catch (error) {
-      dispararSweetBasico("error", "Error", error.message, "Ok");
+      dispararSweetAlerta("error", "Error", error.message, "Ok");
     }
   };
 

@@ -1,7 +1,7 @@
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../constants/routes";
-import { dispararSweetBasico } from "../utils/SweetAlert";
+import { dispararSweetAlerta } from "../utils/SweetAlert";
 import { useState } from "react";
 import RegisterForm from "../components/ui/RegisterForm";
 
@@ -25,7 +25,7 @@ function RegistrationPage() {
     try {
       await register(email, password, userData);
 
-      dispararSweetBasico(
+      dispararSweetAlerta(
         "success",
         "¡Registro exitoso!",
         "Ahora puedes iniciar sesión.",
@@ -34,7 +34,7 @@ function RegistrationPage() {
       navigate(ROUTES.LOGIN);
     } catch (error) { 
       if (error.code === 'auth/email-already-in-use') {
-        dispararSweetBasico(
+        dispararSweetAlerta(
           "error",
           "Correo ya registrado",
           "La dirección de correo que ingresaste ya está en uso. Por favor, intenta con otra o inicia sesión.",
@@ -42,7 +42,7 @@ function RegistrationPage() {
         );
       } else {
         
-        dispararSweetBasico(
+        dispararSweetAlerta(
           "error",
           "Error en el registro",
           "Ocurrió un problema durante el registro. Por favor, verifica tus datos e inténtalo de nuevo.",

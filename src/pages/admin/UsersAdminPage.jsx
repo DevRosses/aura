@@ -3,7 +3,7 @@ import { getUsers, updateUser, deleteUser } from "../../services/userService";
 import { Icon } from "@iconify/react";
 import {
   dispararSweetDecision,
-  dispararSweetBasico,
+  dispararSweetAlerta,
   dispararSweetSelect,
 } from "../../utils/SweetAlert";
 
@@ -49,14 +49,14 @@ const UsersAdminPage = () => {
       try {
         await updateUser(user.id, { role: newRole });
         fetchUsers();
-        dispararSweetBasico(
+        dispararSweetAlerta(
           "success",
           "¡Rol actualizado!",
           "El rol del usuario ha sido cambiado.",
           "Hecho"
         );
       } catch (error) {
-        dispararSweetBasico(
+        dispararSweetAlerta(
           "error",
           "Error",
           "No se pudo actualizar el rol.",
@@ -78,14 +78,14 @@ const UsersAdminPage = () => {
         try {
           await deleteUser(userId);
           fetchUsers();
-          dispararSweetBasico(
+          dispararSweetAlerta(
             "success",
             "Usuario Eliminado",
             "El usuario fue eliminado.",
             "Ok"
           );
         } catch (error) {
-          dispararSweetBasico(
+          dispararSweetAlerta(
             "error",
             "Error",
             "No se pudo eliminar el usuario.",

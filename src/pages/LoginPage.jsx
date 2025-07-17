@@ -1,7 +1,6 @@
 import { ROUTES } from "../constants/routes";
 import { useNavigate } from "react-router-dom";
-import { dispararSweetBasico } from "../utils/SweetAlert";
-import { dispararAlertaVerificacion } from "../utils/SweetAlert";
+import { dispararSweetAlerta } from "../utils/SweetAlert";
 import { useAuth } from "../hooks/useAuth";
 import { useState, useEffect } from "react";
 import { sendPasswordResetEmail } from "../services/userService";
@@ -24,7 +23,7 @@ function LoginPage() {
   // Efecto que se dispara cuando los intentos cambian ---
   useEffect(() => {
     if (verificationAttempts >= 3) {
-      dispararSweetBasico(
+      dispararSweetAlerta(
         "info",
         "Demasiados intentos",
         "Serás redirigido a nuestra página de contacto para ayudarte.",
@@ -46,7 +45,7 @@ function LoginPage() {
     login(formData.email, formData.password)
       .then(() => {
         navigate(ROUTES.DASHBOARD);
-        dispararSweetBasico(
+        dispararSweetAlerta(
           "success",
           "Inicio de sesión exitoso",
           "Bienvenido de nuevo",
@@ -61,7 +60,7 @@ function LoginPage() {
           const reenviarCorreo = () => {
             if (auth.currentUser) {
               sendEmailVerification(auth.currentUser).then(() => {
-                dispararSweetBasico(
+                dispararSweetAlerta(
                   "success",
                   "Correo reenviado",
                   "Revisa tu bandeja de entrada.",
@@ -72,10 +71,10 @@ function LoginPage() {
           };
 
           // 3. Llama a tu "Asistente" y pásale la tarea
-          dispararAlertaVerificacion(reenviarCorreo);
+          dispararSweetAlerta(reenviarCorreo);
         } else {
           // Errores normales de login
-          dispararSweetBasico(
+          dispararSweetAlerta(
             "error",
             "Error al iniciar sesión",
             "El correo o la contraseña son incorrectos.",

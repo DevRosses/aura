@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import {
-  dispararSweetBasico,
-  dispararSweetConfirmacion,
+  dispararSweetAlerta,
+  dispararSweetDecision,
 } from "../utils/SweetAlert";
 
 
@@ -23,7 +23,7 @@ export const CartProvider = ({ children }) => {
 
       if (existingItem) {
         if (existingItem.quantity >= 3) {
-          dispararSweetBasico(
+          dispararSweetAlerta(
             "info",
             "Límite alcanzado",
             "Solo puedes agregar hasta 3 unidades de este producto",
@@ -32,7 +32,7 @@ export const CartProvider = ({ children }) => {
           return prevItems;
         }
 
-        dispararSweetBasico(
+        dispararSweetAlerta(
           "success",
           "Producto actualizado",
           `Se sumó una unidad de "${product.nombre}" al carrito`,
@@ -45,7 +45,7 @@ export const CartProvider = ({ children }) => {
             : item
         );
       } else {
-        dispararSweetBasico(
+        dispararSweetAlerta(
           "success",
           "Producto agregado",
           `"${product.nombre}" se agregó al carrito`,
@@ -60,7 +60,7 @@ export const CartProvider = ({ children }) => {
   const quitarUnidadCart = (productId) => {
     const producto = cartItems.find((item) => item.id === productId);
     if (producto) {
-      dispararSweetBasico(
+      dispararSweetAlerta(
         "warning",
         "Unidad eliminada",
         `Se quitó una unidad de "${producto.nombre}"`,
@@ -83,13 +83,13 @@ export const CartProvider = ({ children }) => {
     const producto = cartItems.find((item) => item.id === productId);
     if (!producto) return;
 
-    const result = await dispararSweetConfirmacion();
+    const result = await dispararSweetDecision();
     if (result.isConfirmed) {
       setCartItems((prevItems) =>
         prevItems.filter((item) => item.id !== productId)
       );
 
-      dispararSweetBasico(
+      dispararSweetAlerta(
         "success",
         "Producto eliminado",
         `"${producto.nombre}" fue quitado del carrito`,
