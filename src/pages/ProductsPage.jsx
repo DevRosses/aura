@@ -29,7 +29,7 @@ const Products = () => {
 
   if (loading)
     return (
-      <div className="text-center">
+      <div className="container text-center">
         <div className="spinner-border text-warning" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>
@@ -37,13 +37,13 @@ const Products = () => {
     );
   if (error)
     return (
-      <p className="alert alert-danger">
+      <p className="container alert alert-danger">
         Error al cargar productos: {error.message}
       </p>
     );
 
   return (
-    <div className="container-fluid mt-5 p-4">
+    <div className="item-list-container container">
       <h2 className="p-2 text-center">
         Cada producto tiene una intención: hidratar, proteger, sanar.
       </h2>
@@ -51,7 +51,7 @@ const Products = () => {
         Cosmética botánica. Sin químicos, sin crueldad. Con ciencia y alma.
       </p>
 
-      <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 m-3">
+      <div className="item-list">
         {products?.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

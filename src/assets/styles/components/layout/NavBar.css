@@ -165,7 +165,7 @@
   
   /* Ocultamos la etiqueta de texto en móvil */
   .navbar__link-label {
-    display: none;
+    display: block;
   }
 
   /* Mostramos la sección de usuario móvil y el botón hamburguesa */

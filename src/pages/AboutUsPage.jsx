@@ -1,6 +1,6 @@
 function AboutUsPage() {
   return (
-    <div className="container-fluid mt-5 p-5">
+    <div className="container">
       <h2 className="p-2 text-center">Somos alquimistas de lo natural</h2>
       <p className="p-3 text-center">
         Inspiradas en saberes ancestrales, formulamos cosmética con el alma de

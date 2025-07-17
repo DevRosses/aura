@@ -42,7 +42,7 @@ const ProductCard = ({ product, onFavoriteChange }) => {
   };
 
   return (
-    <div className="col">
+    <div className="item-card">
       <div className="card text-center h-100 position-relative">
         {/* Solo mostramos el corazón si el usuario está logueado */}
         {user && (
@@ -60,15 +60,15 @@ const ProductCard = ({ product, onFavoriteChange }) => {
 
         <img
           src={product.imagen}
-          className="card-img-top img-fluid product-card-img"
+          className="item-card__image "
           alt={product.nombre}
         />
-        <div className="card-body d-flex flex-column">
-          <h5 className="card-title">{product.nombre}</h5>
-          <p className="card-text">${product.precio}</p>
+        <div className="item-card__body">
+          <h5 className="item-card__title">{product.nombre}</h5>
+          <p className="item-card__price">${product.precio}</p>
           <button
             onClick={() => addToCart(product)}
-            className="btn btn-sm btn-warning mt-auto"
+            className="item-card__button"
           >
             Agregar
           </button>

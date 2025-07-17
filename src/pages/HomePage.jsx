@@ -5,7 +5,7 @@ function HomePage() {
       return (
         <>
           <HomeCarousel/>
-          <PromoBanner/>
+          <PromoBanner />
         </>
       );
     }

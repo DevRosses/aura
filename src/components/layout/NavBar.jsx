@@ -14,7 +14,7 @@ function NavBar() {
   const { cartCount } = useCart();
   const navigate = useNavigate();
 
-  // Tu lista de navegación, ahora con una etiqueta de texto para el escritorio
+  
   const navLinks = [
     { to: ROUTES.HOME, icon: "hugeicons:castle-01", label: "Inicio" },
     {
@@ -71,7 +71,9 @@ function NavBar() {
         <ul className="navbar__links">
           {navLinks.map((item) => (
             <li key={item.to} className="navbar__link">
-              <NavLink to={item.to} onClick={() => setIsMenuOpen(false)}>
+              <NavLink to={item.to} onClick={() => setIsMenuOpen(false)}
+              end
+              >
                 <Icon icon={item.icon} className="navbar__link-icon" />
                 <span className="navbar__link-label">{item.label}</span>
               </NavLink>
