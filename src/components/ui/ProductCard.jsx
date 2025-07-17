@@ -1,35 +1,21 @@
-import { useCart } from "../../hooks/useCart.js";
-import { useAuth } from "../../hooks/useAuth.js";
-import { toggleFavorite } from "../../services/userService.js";
+import { useCart } from "../../hooks/useCart";
+import { useAuth } from "../../hooks/useAuth";
+import { toggleFavorite } from "../../services/userService";
 import { Icon } from "@iconify/react";
 import "../../assets/styles/components/ui/ProductCard.css";
 
-
-// Añadimos un poco de CSS para el corazón
-const favoriteIconStyle = {
-  position: "absolute",
-  top: "8px",
-  right: "8px",
-  fontSize: "1.8rem",
-  cursor: "pointer",
-  color: "white",
-  filter: "drop-shadow(0 0 3px rgba(0, 0, 0, 0.7))",
-};
-
 const ProductCard = ({ product, onFavoriteChange }) => {
   const { addToCart } = useCart();
-  const { user, userProfile, setUserProfile } = useAuth(); // Usamos el perfil del usuario
+  const { user, userProfile, setUserProfile } = useAuth();
 
-  // Verificamos si el producto actual está en la lista de favoritos
   const isFavorite = userProfile?.favorites?.includes(product.id);
 
-  const handleFavoriteClick = async () => {
-    if (!user) {
-      // Opcional: Avisar al usuario que necesita iniciar sesión
-      return;
-    }
+  const handleFavoriteClick = async (e) => {
+    e.stopPropagation(); 
+    if (!user) return;
+
     await toggleFavorite(user.uid, product.id);
-    // Actualizamos el estado local para que el cambio se vea al instante
+
     const updatedFavorites = isFavorite
       ? userProfile.favorites.filter((id) => id !== product.id)
       : [...(userProfile.favorites || []), product.id];
@@ -42,37 +28,32 @@ const ProductCard = ({ product, onFavoriteChange }) => {
   };
 
   return (
-    <div className="item-card">
-      <div className="card text-center h-100 position-relative">
-        {/* Solo mostramos el corazón si el usuario está logueado */}
-        {user && (
-          <div
-            onClick={handleFavoriteClick}
-            style={favoriteIconStyle}
-            title="Agregar a favoritos"
-          >
-            <Icon
-              icon={isFavorite ? "mdi:heart" : "mdi:heart-outline"}
-              style={{ color: isFavorite ? "red" : "white" }}
-            />
-          </div>
-        )}
-
+    <div className="product-card">
+      <div className="product-card__image-wrapper">
         <img
           src={product.imagen}
-          className="item-card__image "
           alt={product.nombre}
+          className="product-card__image"
         />
-        <div className="item-card__body">
-          <h5 className="item-card__title">{product.nombre}</h5>
-          <p className="item-card__price">${product.precio}</p>
+
+        {user && (
           <button
-            onClick={() => addToCart(product)}
-            className="item-card__button"
+            className="product-card__wishlist-btn"
+            onClick={handleFavoriteClick}
+            title={isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
           >
-            Agregar
+            <Icon icon={isFavorite ? "mdi:heart" : "mdi:heart-outline"} />
           </button>
-        </div>
+        )}
+      </div>
+
+      <div className="product-card__info">
+        <h3 className="product-card__title">{product.nombre}</h3>
+        <p className="product-card__price">${product.precio}</p>
+
+        <button onClick={() => addToCart(product)} className="btn btn-primary">
+          Agregar
+        </button>
       </div>
     </div>
   );

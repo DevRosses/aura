@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/productService";
 import ProductCard from "../components/ui/ProductCard";
-import "../assets/styles/components/ui/ProductCard.css";
-
+import "../assets/styles/pages/ProductsPage.css";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -12,15 +11,15 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        setLoading(true); 
-        const productList = await getProducts(); 
-        setProducts(productList); 
+        setLoading(true);
+        const productList = await getProducts();
+        setProducts(productList);
         console.log("📦 Productos recibidos de Firestore:", productList);
       } catch (err) {
         setError(err);
         console.error("Error al cargar productos:", err);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
@@ -43,20 +42,22 @@ const Products = () => {
     );
 
   return (
-    <div className="item-list-container container">
-      <h2 className="p-2 text-center">
-        Cada producto tiene una intención: hidratar, proteger, sanar.
-      </h2>
-      <p className="p-3 text-center">
-        Cosmética botánica. Sin químicos, sin crueldad. Con ciencia y alma.
-      </p>
+    <section className="products-page">
+      <div className="container">
+        <div className="products-header">
+          <h2>Cada producto tiene una intención: hidratar, proteger, sanar.</h2>
+          <p>
+            Cosmética botánica. Sin químicos, sin crueldad. Con ciencia y alma.
+          </p>
+        </div>
 
-      <div className="item-list">
-        {products?.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        <div className="products-grid">
+          {products?.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -96,10 +96,10 @@ img {
 
 /* Clase de utilidad para centrar contenido */
 .container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--spacing-lg) 0;
+  width: 90%; 
+  max-width: 1200px; 
+  margin-left: auto; 
+  margin-right: auto; 
 }
 
 .aura-swal-popup {
