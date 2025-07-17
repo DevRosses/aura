@@ -1,0 +1,189 @@
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) 5%;
+  background-color: var(--color-background);
+  box-shadow: var(--shadow-light);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 70px; 
+}
+
+/* ===== Marca/Logo ===== */
+.navbar__brand h3 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--color-text);
+}
+
+/* ===== Acciones (lado derecho) ===== */
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+/* ===== Carrito ===== */
+.navbar__cart-widget {
+  position: relative;
+  font-size: 1.5rem;
+  color: var(--color-text);
+}
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== Menú principal de navegación ===== */
+.navbar__menu {
+  display: flex; /* Por defecto para desktop */
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+.navbar__links {
+  display: flex;
+  list-style: none;
+  gap: var(--spacing-lg);
+}
+.navbar__link a {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: 500;
+  color: var(--color-text);
+  padding-bottom: var(--spacing-xs);
+  position: relative;
+}
+.navbar__link a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: var(--transition-smooth);
+}
+.navbar__link a:hover::after,
+.navbar__link a.active::after {
+  width: 100%;
+}
+
+/* Íconos en los enlaces de navegación - ocultos en desktop */
+.navbar__link-icon {
+  display: none;
+}
+
+/* ===== Sección de usuario (Login/Logout) ===== */
+.navbar__user-desktop { display: block; }
+.navbar__user-mobile { display: none; } /* Oculto en desktop */
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+.user-info span { font-weight: 500; }
+.user-info button, .btn-login {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--color-text);
+}
+
+
+/* ===== Botón Hamburguesa - Oculto en Desktop ===== */
+.navbar__hamburger {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+  z-index: 1001; /* Siempre por encima del menú */
+}
+
+
+/* #################################### */
+/* ##### ESTILOS PARA MÓVIL (< 769px) ##### */
+/* #################################### */
+
+@media (max-width: 768px) {
+  /* Ocultamos los links de texto y el saludo de usuario de desktop */
+  .navbar__menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xl);
+    
+    position: fixed;
+    top: 0;
+    left: -100%; /* Empieza oculto fuera de la pantalla */
+    width: 100%;
+    height: 100vh;
+    
+    background-color: var(--color-background);
+    transition: left 0.4s ease-in-out;
+  }
+  
+  .navbar__menu.active {
+    left: 0; /* Aparece desde la izquierda */
+  }
+
+  /* Mostramos el menú como una lista vertical */
+  .navbar__links {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .navbar__link a {
+    font-size: 1.5rem; /* Letra más grande para móvil */
+  }
+
+  /* Mostramos los íconos en móvil */
+  .navbar__link-icon {
+    display: block;
+    font-size: 1.8rem;
+  }
+  
+  /* Ocultamos la etiqueta de texto en móvil */
+  .navbar__link-label {
+    display: none;
+  }
+
+  /* Mostramos la sección de usuario móvil y el botón hamburguesa */
+  .navbar__user-desktop { display: none; }
+  .navbar__user-mobile { display: block; }
+  .navbar__hamburger { display: block; }
+
+  .navbar__user-button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--border-radius);
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+}

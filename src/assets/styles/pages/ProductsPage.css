@@ -1,0 +1,14 @@
+
+.item-list-container h1 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  font-weight: 300;
+  font-size: 2.5rem;
+}
+
+.item-list {
+  display: grid;
+  /* Crea columnas flexibles: mínimo 280px de ancho, se ajustan para llenar el espacio */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}

@@ -2,6 +2,8 @@ import { useCart } from "../../hooks/useCart.js";
 import { useAuth } from "../../hooks/useAuth.js";
 import { toggleFavorite } from "../../services/userService.js";
 import { Icon } from "@iconify/react";
+import "../../assets/styles/components/ui/ProductCard.css";
+
 
 // Añadimos un poco de CSS para el corazón
 const favoriteIconStyle = {

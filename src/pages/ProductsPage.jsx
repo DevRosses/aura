@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/productService";
 import ProductCard from "../components/ui/ProductCard";
+import "../assets/styles/components/ui/ProductCard.css";
+
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -18,7 +20,7 @@ const Products = () => {
         setError(err);
         console.error("Error al cargar productos:", err);
       } finally {
-        setLoading(false); // Termina la carga (haya funcionado o no)
+        setLoading(false); 
       }
     };
 
