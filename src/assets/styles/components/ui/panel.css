@@ -1,0 +1,125 @@
+
+.panel-container {
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
+}
+
+.panel-header {
+  background-color: var(--color-text);
+  color: var(--color-white);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-xl);
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.panel-section {
+  background-color: var(--color-white);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  margin-bottom: var(--spacing-lg);
+}
+
+.panel-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-secondary);
+  padding-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.panel-section-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+
+/* Estilos para los badges de rol */
+.role-badge {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.role-badge.admin {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+.role-badge.user {
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+}
+
+/* Estilos para botones de acción pequeños, solo con ícono */
+.btn-icon {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  margin: 0 var(--spacing-xs);
+  border-radius: 50%;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--color-text);
+  transition: var(--transition-smooth);
+}
+
+.btn-icon:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+/* Modificador para el botón de eliminar */
+.btn-icon.btn-danger:hover {
+  background-color: #e53935; 
+  color: var(--color-white);
+}
+
+
+.panel-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; 
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-secondary);
+}
+
+.panel-section-title {
+  flex-grow: 1; 
+.panel-section-title h3,
+.panel-section-title p {
+  margin: 0;
+}
+.panel-section-title p {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-top: 4px;
+}
+
+/* Responsive para el header de la sección */
+@media (max-width: 768px) {
+  .panel-section-header {
+    flex-direction: column;
+    align-items: stretch; 
+  }
+  .panel-section-title {
+    margin-bottom: var(--spacing-md);
+  }
+  .panel-section-actions .btn {
+    width: 100%;  
+  }
+}   
+}

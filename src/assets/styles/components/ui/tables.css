@@ -41,3 +41,7 @@
   padding: var(--spacing-xs) var(--spacing-sm);
   font-size: 0.85rem;
 }
+.table-actions {
+  text-align: end; 
+  white-space: nowrap; 
+}

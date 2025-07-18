@@ -3,6 +3,8 @@ import { getProducts, deleteProduct } from "../../services/productService";
 import { Icon } from "@iconify/react";
 import { dispararSweetDecision } from "../../utils/SweetAlert";
 import ProductForm from "../../components/admin/ProductForm"; 
+import "../../assets/styles/components/ui/tables.css";
+
 
 const ProductsAdminPage = () => {
   const [products, setProducts] = useState([]);
@@ -63,7 +65,7 @@ const ProductsAdminPage = () => {
     return <p className="alert alert-danger">Error: {error.message}</p>;
 
   return (
-    <div className="container mt-4">
+    <div className="container p-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2>Gestión de Productos</h2>
         <button className="btn btn-primary" onClick={handleAdd}>
@@ -78,7 +80,7 @@ const ProductsAdminPage = () => {
         <>
           <p>Aquí puedes agregar, editar o eliminar productos.</p>
           <div className="table-responsive">
-            {/* ... tu tabla de productos ... */}
+            {/* ... tabla de productos ... */}
             <table className="table table-hover align-middle">
               <thead className="table-dark">
                 <tr>
@@ -106,16 +108,16 @@ const ProductsAdminPage = () => {
                     <td>{product.nombre}</td>
                     <td>${product.precio}</td>
                     <td>{product.stock}</td>
-                    <td>
+                    <td className="table-actions">
                       <button
-                        className="btn btn-sm btn-warning me-2"
+                        className="btn-icon"
                         title="Editar"
                         onClick={() => handleEdit(product)}
                       >
                         <Icon icon="mdi:pencil" />
                       </button>
                       <button
-                        className="btn btn-sm btn-danger"
+                        className="btn-icon btn-danger"
                         title="Eliminar"
                         onClick={() => handleDelete(product.id)}
                       >

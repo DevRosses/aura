@@ -6,6 +6,7 @@ import {
   dispararSweetAlerta,
   dispararSweetSelect,
 } from "../../utils/SweetAlert";
+import "../../assets/styles/components/ui/tables.css";
 
 const UsersAdminPage = () => {
   const [users, setUsers] = useState([]);
@@ -17,11 +18,11 @@ const UsersAdminPage = () => {
       const usersData = await getUsers();
       setUsers(usersData);
     } catch (error) {
-      dispararSweetBasico(
+   
+      dispararSweetAlerta(
         "error",
         "Error",
-        "No se pudieron cargar los usuarios.",
-        "Ok"
+        "No se pudieron cargar los usuarios."
       );
     } finally {
       setLoading(false);
@@ -32,19 +33,16 @@ const UsersAdminPage = () => {
     fetchUsers();
   }, []);
 
-  // 2. Modifica la función para usar el nuevo SweetAlert
   const handleEditRole = async (user) => {
     const { value: newRole } = await dispararSweetSelect(
       "Editar Rol de Usuario",
-      `Seleccione el nuevo rol para ${user.nombre}:`,
       {
-        user: "User", 
+        user: "User",
         admin: "Admin",
       },
-      user.role 
+      "Seleccione el nuevo rol..."
     );
 
-    // 
     if (newRole) {
       try {
         await updateUser(user.id, { role: newRole });
@@ -52,16 +50,10 @@ const UsersAdminPage = () => {
         dispararSweetAlerta(
           "success",
           "¡Rol actualizado!",
-          "El rol del usuario ha sido cambiado.",
-          "Hecho"
+          "El rol del usuario ha sido cambiado."
         );
       } catch (error) {
-        dispararSweetAlerta(
-          "error",
-          "Error",
-          "No se pudo actualizar el rol.",
-          "Ok"
-        );
+        dispararSweetAlerta("error", "Error", "No se pudo actualizar el rol.");
       }
     }
   };
@@ -81,15 +73,13 @@ const UsersAdminPage = () => {
           dispararSweetAlerta(
             "success",
             "Usuario Eliminado",
-            "El usuario fue eliminado.",
-            "Ok"
+            "El usuario fue eliminado."
           );
         } catch (error) {
           dispararSweetAlerta(
             "error",
             "Error",
-            "No se pudo eliminar el usuario.",
-            "Ok"
+            "No se pudo eliminar el usuario."
           );
         }
       }
@@ -99,19 +89,16 @@ const UsersAdminPage = () => {
   if (loading) return <p className="text-center mt-5">Cargando usuarios...</p>;
 
   return (
-    <div className="container mt-4">
-      <h2>Gestión de Usuarios</h2>
-      <p>Aquí puedes ver, editar y eliminar los usuarios registrados.</p>
-
+    <div>
       <div className="table-responsive">
         <table className="table table-hover align-middle">
-          <thead className="table-dark">
+          <thead>
             <tr>
               <th>Nombre</th>
               <th>Apellido</th>
               <th>Email</th>
               <th>Rol</th>
-              <th>Acciones</th>
+              <th className="text-end">Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -121,26 +108,18 @@ const UsersAdminPage = () => {
                 <td>{user.apellido}</td>
                 <td>{user.email}</td>
                 <td>
-                  <span
-                    className={`badge ${
-                      user.role === "admin"
-                        ? "bg-warning text-dark"
-                        : "bg-secondary"
-                    }`}
-                  >
-                    {user.role}
-                  </span>
+                  <span className={`role-badge ${user.role}`}>{user.role}</span>
                 </td>
-                <td>
+                <td className="table-actions">
                   <button
-                    className="btn btn-sm btn-info me-2"
+                    className="btn-icon"
                     title="Editar Rol"
                     onClick={() => handleEditRole(user)}
                   >
                     <Icon icon="mdi:pencil" />
                   </button>
                   <button
-                    className="btn btn-sm btn-danger"
+                    className="btn-icon btn-danger"
                     title="Eliminar"
                     onClick={() => handleDelete(user.id)}
                   >
