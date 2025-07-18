@@ -9,12 +9,12 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA6y_X8KT2Z3xWAjr6ezF-DpH3eVyugM2E",
-  authDomain: "aura-ed062.firebaseapp.com",
-  projectId: "aura-ed062",
-  storageBucket: "aura-ed062.firebasestorage.app",
-  messagingSenderId: "107763894455",
-  appId: "1:107763894455:web:3627e7731e6595f0c32532",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);

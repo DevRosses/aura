@@ -25,13 +25,13 @@ export const createProduct = async (productData) => {
   return docRef.id;
 };
 
-
+// 👇 AGREGAR EXPORT
 export const updateProduct = async (productId, productData) => {
   const docRef = doc(db, "productos", productId);
   await updateDoc(docRef, productData);
 };
 
-
+// 👇 AGREGAR EXPORT
 export const deleteProduct = async (productId) => {
   await deleteDoc(doc(db, "productos", productId));
 };
