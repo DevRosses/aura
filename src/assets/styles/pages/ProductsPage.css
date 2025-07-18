@@ -21,31 +21,31 @@
   margin-left: auto;
   margin-right: auto;
 }
-
 .products-grid {
   display: grid;
-  gap: var(--spacing-md);
-  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+  padding: 0 var(--spacing-md); 
+  /* BASE (Móvil < 576px): 1 columna. Innegociable para anchos pequeños. */
+  grid-template-columns: 1fr;
 }
 
-/* --- Tablet --- */
-@media (min-width: 768px) {
+/* Tablets en vertical y móviles grandes */
+@media (min-width: 576px) {
   .products-grid {
-    gap: var(--spacing-lg);
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablets en horizontal y desktops pequeños */
+@media (min-width: 992px) {
+  .products-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* --- Desktop --- */
-@media (min-width: 1024px) {
+/* Desktops grandes */
+@media (min-width: 1200px) {
   .products-grid {
     grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* --- Pantallas muy grandes  --- */
-@media (min-width: 1400px) {
-  .products-grid {
-    grid-template-columns: repeat(5, 1fr);
   }
 }
