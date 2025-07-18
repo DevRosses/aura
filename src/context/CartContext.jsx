@@ -83,7 +83,13 @@ export const CartProvider = ({ children }) => {
     const producto = cartItems.find((item) => item.id === productId);
     if (!producto) return;
 
-    const result = await dispararSweetDecision();
+    const result = await dispararSweetDecision(
+      "warning",
+      "¿Estás seguro?",
+      `¿Quieres eliminar "${producto.nombre}" del carrito?`,
+      "Sí, eliminar",
+      "Cancelar"
+    );
     if (result.isConfirmed) {
       setCartItems((prevItems) =>
         prevItems.filter((item) => item.id !== productId)

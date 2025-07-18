@@ -1,35 +1,66 @@
-.cart-card {
-  border: 1px solid var(--color-border);
-  border-radius: 0.5rem;
-  overflow: hidden;
-  transition: transform 0.2s;
+
+.cart-item-card {
+  display: flex;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  padding: var(--spacing-md);
+  gap: var(--spacing-md);
 }
 
-.cart-card:hover {
-  transform: scale(1.02);
+.cart-item-card__image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  flex-shrink: 0; 
 }
 
-.cart-card img {
-  max-width: 100%;
-  height: auto;
+.cart-item-card__info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
-.cart-card .card-body {
-  padding: 1rem;
+.cart-item-card__info h3 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0 0 var(--spacing-xs) 0;
 }
 
-.cart-card .card-title {
-  font-size: 1.25rem;
-  font-weight: bold;
+.cart-item-card__info p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #6c757d;
 }
 
-.cart-card .card-text {
-  margin-bottom: 0.5rem;
+.cart-item-card__info .subtotal {
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-top: var(--spacing-sm);
 }
 
-.cart-card .btn {
-  margin-right: 0.5rem;
+.cart-item-card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: auto; /* Empuja las acciones hacia abajo */
 }
-.cart-card .btn:last-child {
-  margin-right: 0;
+
+.cart-item-card__actions button {
+  width: 24px;
+  height: 24px;
+  font-size: 1.4rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
+/* Botón de eliminar con nuestro estilo */
+.cart-item-card__actions .btn-danger {
+  background-color: #e53935;
+  color: var(--color-white);
+}
+

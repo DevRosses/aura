@@ -51,7 +51,7 @@ img {
 /* ===== ESTILOS DE BOTONES REUTILIZABLES ===== */
 .btn {
   display: inline-block;
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-md);
   font-family: var(--font-primary);
   font-size: 1rem;
   font-weight: 700;
@@ -70,7 +70,7 @@ img {
 }
 
 .btn-primary:hover {
-  background-color: #7a8a5a; /* Un tono ligeramente más oscuro del primario */
+  background-color: #7a8a5a; 
   color: var(--color-white);
   transform: translateY(-2px);
   box-shadow: var(--shadow-light);
