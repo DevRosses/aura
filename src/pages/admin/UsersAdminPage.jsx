@@ -18,7 +18,6 @@ const UsersAdminPage = () => {
       const usersData = await getUsers();
       setUsers(usersData);
     } catch (error) {
-   
       dispararSweetAlerta(
         "error",
         "Error",
@@ -89,48 +88,50 @@ const UsersAdminPage = () => {
   if (loading) return <p className="text-center mt-5">Cargando usuarios...</p>;
 
   return (
-    <div>
-      <div className="table-responsive">
-        <table className="table table-hover align-middle">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Email</th>
-              <th>Rol</th>
-              <th className="text-end">Acciones</th>
+<div className="container p-4">
+    <div className="table-responsive">
+      <p className="mb-4 text-center">Aquí puedes editar los roles de los usuarios.</p>
+      {/* ... tabla de usuarios registrados ... */}
+      <table className="table table-hover align-middle">
+        <thead className="table-dark">
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th className="text-end">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => (
+            <tr key={user.id}>
+              <td>{user.nombre}</td>
+              <td>{user.apellido}</td>
+              <td>{user.email}</td>
+              <td>
+                <span className={`role-badge ${user.role}`}>{user.role}</span>
+              </td>
+              <td className="table-actions">
+                <button
+                  className="btn-icon"
+                  title="Editar Rol"
+                  onClick={() => handleEditRole(user)}
+                >
+                  <Icon icon="mdi:pencil" />
+                </button>
+                <button
+                  className="btn-icon btn-danger"
+                  title="Eliminar"
+                  onClick={() => handleDelete(user.id)}
+                >
+                  <Icon icon="mdi:delete" />
+                </button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.nombre}</td>
-                <td>{user.apellido}</td>
-                <td>{user.email}</td>
-                <td>
-                  <span className={`role-badge ${user.role}`}>{user.role}</span>
-                </td>
-                <td className="table-actions">
-                  <button
-                    className="btn-icon"
-                    title="Editar Rol"
-                    onClick={() => handleEditRole(user)}
-                  >
-                    <Icon icon="mdi:pencil" />
-                  </button>
-                  <button
-                    className="btn-icon btn-danger"
-                    title="Eliminar"
-                    onClick={() => handleDelete(user.id)}
-                  >
-                    <Icon icon="mdi:delete" />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
+    </div>
     </div>
   );
 };

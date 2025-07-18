@@ -3,7 +3,7 @@ import SidebarAdmin from "./SidebarAdmin";
 
 const AdminLayout = () => {
   return (
-    <div className="container-fluid">
+    <div className="">
       <SidebarAdmin />
       <Outlet />
     </div>

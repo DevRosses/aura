@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { getProducts, deleteProduct } from "../../services/productService";
 import { Icon } from "@iconify/react";
 import { dispararSweetDecision } from "../../utils/SweetAlert";
-import ProductForm from "../../components/admin/ProductForm"; 
+import ProductForm from "../../components/admin/ProductForm";
 import "../../assets/styles/components/ui/tables.css";
-
 
 const ProductsAdminPage = () => {
   const [products, setProducts] = useState([]);
@@ -77,59 +76,57 @@ const ProductsAdminPage = () => {
       {showForm ? (
         <ProductForm product={selectedProduct} onSave={handleSave} />
       ) : (
-        <>
-          <p>Aquí puedes agregar, editar o eliminar productos.</p>
-          <div className="table-responsive">
-            {/* ... tabla de productos ... */}
-            <table className="table table-hover align-middle">
-              <thead className="table-dark">
-                <tr>
-                  <th>Imagen</th>
-                  <th>Nombre</th>
-                  <th>Precio</th>
-                  <th>Stock</th>
-                  <th>Acciones</th>
+        <div className="table-responsive">
+          <p className="mb-4 text-center">Aquí puedes agregar, editar o eliminar productos.</p>
+          {/* ... tabla de productos ... */}
+          <table className="table table-hover align-middle">
+            <thead className="table-dark">
+              <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product) => (
+                <tr key={product.id}>
+                  <td>
+                    <img
+                      src={product.imagen}
+                      alt={product.nombre}
+                      style={{
+                        width: "60px",
+                        height: "60px",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </td>
+                  <td>{product.nombre}</td>
+                  <td>${product.precio}</td>
+                  <td>{product.stock}</td>
+                  <td className="table-actions">
+                    <button
+                      className="btn-icon"
+                      title="Editar"
+                      onClick={() => handleEdit(product)}
+                    >
+                      <Icon icon="mdi:pencil" />
+                    </button>
+                    <button
+                      className="btn-icon btn-danger"
+                      title="Eliminar"
+                      onClick={() => handleDelete(product.id)}
+                    >
+                      <Icon icon="mdi:delete" />
+                    </button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {products.map((product) => (
-                  <tr key={product.id}>
-                    <td>
-                      <img
-                        src={product.imagen}
-                        alt={product.nombre}
-                        style={{
-                          width: "60px",
-                          height: "60px",
-                          objectFit: "cover",
-                        }}
-                      />
-                    </td>
-                    <td>{product.nombre}</td>
-                    <td>${product.precio}</td>
-                    <td>{product.stock}</td>
-                    <td className="table-actions">
-                      <button
-                        className="btn-icon"
-                        title="Editar"
-                        onClick={() => handleEdit(product)}
-                      >
-                        <Icon icon="mdi:pencil" />
-                      </button>
-                      <button
-                        className="btn-icon btn-danger"
-                        title="Eliminar"
-                        onClick={() => handleDelete(product.id)}
-                      >
-                        <Icon icon="mdi:delete" />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
