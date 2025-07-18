@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { createProduct, updateProduct } from "../../services/productService";
 import { dispararSweetAlerta } from "../../utils/SweetAlert";
+import "../../assets/styles/components/ui/panel.css"
 
 const ProductForm = ({ product, onSave }) => {
   const [formData, setFormData] = useState({

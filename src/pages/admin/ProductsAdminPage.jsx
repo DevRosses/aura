@@ -3,7 +3,8 @@ import { getProducts, deleteProduct } from "../../services/productService";
 import { Icon } from "@iconify/react";
 import { dispararSweetDecision } from "../../utils/SweetAlert";
 import ProductForm from "../../components/admin/ProductForm";
-import "../../assets/styles/components/ui/tables.css";
+import "../../assets/styles/components/ui/panel.css"
+
 
 const ProductsAdminPage = () => {
   const [products, setProducts] = useState([]);
@@ -64,7 +65,7 @@ const ProductsAdminPage = () => {
     return <p className="alert alert-danger">Error: {error.message}</p>;
 
   return (
-    <div className="container p-4">
+    <div className="container-fluid">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2>Gestión de Productos</h2>
         <button className="btn btn-primary" onClick={handleAdd}>
@@ -77,10 +78,12 @@ const ProductsAdminPage = () => {
         <ProductForm product={selectedProduct} onSave={handleSave} />
       ) : (
         <div className="table-responsive">
-          <p className="mb-4 text-center">Aquí puedes agregar, editar o eliminar productos.</p>
+          <p className="mb-4 text-center">
+            Aquí puedes agregar, editar o eliminar productos.
+          </p>
           {/* ... tabla de productos ... */}
           <table className="table table-hover align-middle">
-            <thead className="table-dark">
+            <thead className="table">
               <tr>
                 <th>Imagen</th>
                 <th>Nombre</th>

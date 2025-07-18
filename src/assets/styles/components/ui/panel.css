@@ -1,67 +1,97 @@
 
+
+/* --- Estilos Base del Layout del Panel --- */
 .panel-container {
-  padding-top: var(--spacing-xl);
-  padding-bottom: var(--spacing-xl);
+
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
 }
 
 .panel-header {
   background-color: var(--color-text);
   color: var(--color-white);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md); 
   border-radius: var(--border-radius);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  flex-direction: row; 
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  justify-content: space-between;
 }
 
 .panel-header h2 {
   margin: 0;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 500;
+}
+
+.panel-header-nav {
+  display: flex;
+  width: 30%;
+  justify-content: space-around;
 }
 
 .panel-section {
   background-color: var(--color-white);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md); 
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-light);
   margin-bottom: var(--spacing-lg);
 }
 
-.panel-section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--color-secondary);
-  padding-bottom: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
+/* --- Estilos para Tablas --- */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius);
 }
 
-.panel-section-header h3 {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 500;
+.table {
+  margin-bottom: 0; 
 }
 
+.table > :not(caption) > * > * {
+  padding: var(--spacing-sm);
+  vertical-align: middle;
+  border-color: var(--color-secondary);
+  white-space: nowrap; 
+}
 
-/* Estilos para los badges de rol */
+.table thead {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.table-hover > tbody > tr:hover > * {
+  --bs-table-accent-bg: var(--color-secondary);
+  color: var(--color-text);
+}
+
+.table-actions {
+  text-align: end; 
+  min-width: 100px;
+}
+
+/* --- Estilos para Badges y Botones --- */
 .role-badge {
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--border-radius);
   font-weight: 700;
   font-size: 0.8rem;
   text-transform: uppercase;
+  white-space: nowrap;
 }
-
 .role-badge.admin {
   background-color: var(--color-accent);
   color: var(--color-white);
 }
-
 .role-badge.user {
   background-color: var(--color-secondary);
   color: var(--color-text);
 }
 
-/* Estilos para botones de acción pequeños, solo con ícono */
 .btn-icon {
   background-color: transparent;
   border: none;
@@ -74,52 +104,46 @@
   color: var(--color-text);
   transition: var(--transition-smooth);
 }
-
 .btn-icon:hover {
   background-color: var(--color-secondary);
   color: var(--color-primary);
 }
-
-/* Modificador para el botón de eliminar */
 .btn-icon.btn-danger:hover {
-  background-color: #e53935; 
+  background-color: #e53935;
   color: var(--color-white);
 }
 
+/* ====================================================== */
+/* === Media Queries para pantallas más grandes (Desktop) === */
+/* ====================================================== */
 
-.panel-section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start; 
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
-  padding-bottom: var(--spacing-md);
-  border-bottom: 1px solid var(--color-secondary);
-}
+@media (min-width: 768px) {
+  .panel-container {
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+  }
 
-.panel-section-title {
-  flex-grow: 1; 
-.panel-section-title h3,
-.panel-section-title p {
-  margin: 0;
-}
-.panel-section-title p {
-  font-size: 0.9rem;
-  color: #6c757d;
-  margin-top: 4px;
-}
+  .panel-header {
+    flex-direction: row; 
+    justify-content: space-between;
+    align-items: center;
+  }
 
-/* Responsive para el header de la sección */
-@media (max-width: 768px) {
-  .panel-section-header {
-    flex-direction: column;
-    align-items: stretch; 
+  .panel-header h2 {
+    font-size: 1.5rem; 
   }
-  .panel-section-title {
-    margin-bottom: var(--spacing-md);
+
+  .panel-header-nav {
+    display: flex;
+    width: 40%;
+    justify-content: space-around;
   }
-  .panel-section-actions .btn {
-    width: 100%;  
+
+  .panel-section {
+    padding: var(--spacing-lg); 
   }
-}   
+
+  .table > :not(caption) > * > * {
+    padding: var(--spacing-md); 
+  }
 }

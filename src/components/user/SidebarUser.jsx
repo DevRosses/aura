@@ -1,4 +1,3 @@
-import "../../assets/styles/components/admin/SidebarAdmin.css";
 
 const SidebarUser = () => {
   return (
