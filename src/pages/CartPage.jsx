@@ -45,10 +45,8 @@ function CartPage() {
         <h4>Total: ${totalPrice.toFixed(2)}</h4>
         <button
           className="btn btn-success mt-2"
-          onClick={
-            /*() => navigate(ROUTES.PAYMENT)*/
-                dispararEnConstruccion()
-              }
+          onClick={() => dispararEnConstruccion()}
+          disabled={cartItems.length === 0}
         >
           Finalizar compra
         </button>
