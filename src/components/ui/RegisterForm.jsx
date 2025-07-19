@@ -2,12 +2,13 @@ import "../../assets/styles/components/ui/forms.css";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
-import { dispararSweetAlerta } from "../../utils/SweetAlert";
+
 
 function RegisterForm({
   setShowPassword,
   showPassword,
-  dispararSweetBasico,
+  sendPasswordResetEmail,
+  formData,
   handleSubmit,
 }) {
   return (
