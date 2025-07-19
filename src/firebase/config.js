@@ -17,15 +17,12 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-console.log("Firebase Config en uso:", firebaseConfig);
-
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 export function crearUsuario(email, password) {
-  // Crea el usuario y luego envía el email de verificación
   return createUserWithEmailAndPassword(auth, email, password).then(
     (userCredential) => {
       return sendEmailVerification(userCredential.user).then(
