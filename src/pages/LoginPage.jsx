@@ -1,6 +1,9 @@
 import { ROUTES } from "../constants/routes";
 import { useNavigate } from "react-router-dom";
-import { dispararSweetAlerta } from "../utils/SweetAlert";
+import {
+  dispararSweetAlerta,
+  dispararSweetDecision,
+} from "../utils/SweetAlert";
 import { useAuth } from "../hooks/useAuth";
 import { useState, useEffect } from "react";
 import { sendPasswordResetEmail } from "../services/userService";
@@ -56,24 +59,29 @@ function LoginPage() {
         if (error.message === "EMAIL_NOT_VERIFIED") {
           setVerificationAttempts((prev) => prev + 1);
 
-          // 2. Define la "tarea" que quieres que se ejecute al confirmar
-          const reenviarCorreo = () => {
-            if (auth.currentUser) {
-              sendEmailVerification(auth.currentUser).then(() => {
-                dispararSweetAlerta(
-                  "success",
-                  "Correo reenviado",
-                  "Revisa tu bandeja de entrada.",
-                  "Ok"
-                );
-              });
+          
+          dispararSweetDecision(
+            "warning",
+            "Correo no verificado",
+            "Tu cuenta fue creada pero necesitas verificar tu correo. ¿Quieres que te reenviemos el enlace de verificación?",
+            "Sí, reenviar correo",
+            "Ahora no"
+          ).then((result) => {
+        
+            if (result.isConfirmed) {
+              if (auth.currentUser) {
+                sendEmailVerification(auth.currentUser).then(() => {
+                  dispararSweetAlerta(
+                    "success",
+                    "Correo reenviado",
+                    "Revisa tu bandeja de entrada (y la carpeta de spam)."
+                  );
+                });
+              }
             }
-          };
-
-          // 3. Llama a tu "Asistente" y pásale la tarea
-          dispararSweetAlerta(reenviarCorreo);
+          });
         } else {
-          // Errores normales de login
+          
           dispararSweetAlerta(
             "error",
             "Error al iniciar sesión",
